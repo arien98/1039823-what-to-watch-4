@@ -1,19 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import FilmCard from "../film-card/film-card";
 
-const FilmCard = (props) => {
-  const {title} = props;
-  return (
-    <article className="small-movie-card catalog__movies-card">
-      <div className="small-movie-card__image">
-        <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-      </div>
-      <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
-      </h3>
-    </article>
-  );
-};
+const onFilmHeaderClick = () => {};
 
 const Main = (props) => {
   const {title, genre, releaseDate, filmTitles} = props;
@@ -112,7 +101,11 @@ const Main = (props) => {
         </ul>
 
         <div className="catalog__movies-list">
-          {filmTitles.map((element, i) => <FilmCard key={element + i} title = {element} />)};
+          {filmTitles.map((element, i) => <FilmCard
+            key={element + i}
+            title = {element}
+            onFilmHeaderClick={onFilmHeaderClick}
+          />)};
         </div>
 
         <div className="catalog__more">
@@ -135,10 +128,6 @@ const Main = (props) => {
       </footer>
     </div>
   </React.Fragment>;
-};
-
-FilmCard.propTypes = {
-  title: PropTypes.string,
 };
 
 Main.propTypes = {

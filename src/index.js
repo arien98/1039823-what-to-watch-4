@@ -29,7 +29,7 @@ const FILM_TITLES = [
 const descFilm = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
-  releaseDate: new Date(2014, 5, 5)
+  releaseDate: new Date(2014, 5, 5),
 };
 
 
