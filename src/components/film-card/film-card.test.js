@@ -5,8 +5,12 @@ import FilmCard from "./film-card";
 describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      title: `Aviator`,
       onFilmHeaderClick: () => {},
+      onFilmCardFocus: () => {},
+      filmData: {
+        title: `Aviator`,
+        genre: `Drama`,
+      }
     };
 
     const tree = renderer

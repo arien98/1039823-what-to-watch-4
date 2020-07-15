@@ -5,10 +5,29 @@ import App from "./app";
 describe(`app renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      title: `Aviator`,
-      genre: `Drama`,
-      releaseDate: new Date(0),
-      filmTitles: [`Bohemian Rhapsody`, `Macbeth`, `Aviator`],
+      descFilm: {
+        title: `Aviator`,
+        poster: `../img/aviator.jpg`,
+        genre: `Drama`,
+        releaseDate: 2010,
+      },
+      filmsTitles: [`Bohemian Rhapsody`, `Macbeth`, `Aviator`],
+      filmsData: [{
+        id: 2,
+        title: `Bohemian Rhapsody`,
+        poster: `img/bohemian-rhapsody.jpg`,
+      },
+      {
+        id: 3,
+        title: `Macbeth`,
+        poster: `img/macbeth.jpg`,
+      },
+      {
+        id: 4,
+        title: `Aviator`,
+        poster: `img/aviator.jpg`,
+      },
+      ]
     };
 
     const tree = renderer
