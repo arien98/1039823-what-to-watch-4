@@ -1,16 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmCard from "../film-card/film-card";
+import FilmsList from "../films-list/films-list.jsx";
 
 const onFilmHeaderClick = () => {};
 
+const onFilmCardFocus = () => {};
+
 const Main = (props) => {
-  const {title, genre, releaseDate, filmTitles} = props;
-  const year = releaseDate.getFullYear();
-  return <React.Fragment>
+  const {descFilm, filmsTitles, filmsData} = props;
+  const {title, poster, genre, releaseDate} = descFilm;
+  return <>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src={poster} alt={title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -34,14 +36,14 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={poster} alt={title} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{year}</span>
+              <span className="movie-card__year">{releaseDate}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -100,13 +102,12 @@ const Main = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {filmTitles.map((element, i) => <FilmCard
-            key={element + i}
-            title = {element}
-            onFilmHeaderClick={onFilmHeaderClick}
-          />)};
-        </div>
+        <FilmsList
+          filmsTitles={filmsTitles}
+          onFilmHeaderClick={onFilmHeaderClick}
+          onFilmCardFocus={onFilmCardFocus}
+          filmsData={filmsData}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -127,14 +128,13 @@ const Main = (props) => {
         </div>
       </footer>
     </div>
-  </React.Fragment>;
+  </>;
 };
 
 Main.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.instanceOf(Date),
-  filmTitles: PropTypes.arrayOf(PropTypes.string),
+  descFilm: PropTypes.object,
+  filmsTitles: PropTypes.arrayOf(PropTypes.string),
+  filmsData: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Main;

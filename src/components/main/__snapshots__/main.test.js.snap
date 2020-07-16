@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="Aviator"
+        src="../img/aviator.jpg"
       />
     </div>
     <h1
@@ -69,9 +69,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="Aviator"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="../img/aviator.jpg"
             width="218"
           />
         </div>
@@ -94,7 +94,7 @@ Array [
             <span
               className="movie-card__year"
             >
-              1970
+              2010
             </span>
           </p>
           <div
@@ -259,14 +259,16 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          data-title="Bohemian Rhapsody"
+          onFocus={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Bohemian Rhapsody"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/bohemian-rhapsody.jpg"
               width="280"
             />
           </div>
@@ -284,14 +286,16 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          data-title="Macbeth"
+          onFocus={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Macbeth"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/macbeth.jpg"
               width="280"
             />
           </div>
@@ -309,14 +313,16 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          data-title="Aviator"
+          onFocus={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Aviator"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/aviator.jpg"
               width="280"
             />
           </div>
@@ -332,7 +338,6 @@ Array [
             </a>
           </h3>
         </article>
-        ;
       </div>
       <div
         className="catalog__more"

@@ -3,21 +3,19 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 const App = (props) => {
-  const {title, genre, releaseDate, filmTitles} = props;
+  const {descFilm, filmsTitles, filmsData} = props;
 
   return <Main
-    title = {title}
-    genre = {genre}
-    releaseDate = {releaseDate}
-    filmTitles = {filmTitles}
+    descFilm={descFilm}
+    filmsTitles={filmsTitles}
+    filmsData={filmsData}
   />;
 };
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.instanceOf(Date),
-  filmTitles: PropTypes.arrayOf(PropTypes.string),
+  descFilm: PropTypes.object,
+  filmsTitles: PropTypes.arrayOf(PropTypes.string),
+  filmsData: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default App;

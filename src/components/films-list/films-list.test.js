@@ -1,17 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main";
+import FilmsList from "./films-list.jsx";
 
 describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      descFilm: {
-        title: `Aviator`,
-        poster: `../img/aviator.jpg`,
-        genre: `Drama`,
-        releaseDate: 2010,
-      },
       filmsTitles: [`Bohemian Rhapsody`, `Macbeth`, `Aviator`],
+      onFilmHeaderClick: () => {},
+      onFilmCardFocus: () => {},
       filmsData: [{
         id: 2,
         title: `Bohemian Rhapsody`,
@@ -27,11 +23,11 @@ describe(`main renders correctly`, () => {
         title: `Aviator`,
         poster: `img/aviator.jpg`,
       },
-      ]
+      ],
     };
 
     const tree = renderer
-      .create(<Main {...props}/>)
+      .create(<FilmsList {...props} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

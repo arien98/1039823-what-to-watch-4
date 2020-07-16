@@ -3,14 +3,15 @@
 exports[`main renders correctly it renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  data-title="Aviator"
+  onFocus={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
     <img
-      alt="Fantastic Beasts: The Crimes of Grindelwald"
+      alt="Aviator"
       height="175"
-      src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       width="280"
     />
   </div>

@@ -2,11 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const FilmCard = (props) => {
-  const {title, onFilmHeaderClick} = props;
+  const {onFilmHeaderClick, onFilmCardFocus, filmData} = props;
+  const {title, poster} = filmData;
+
   return (
-    <article className="small-movie-card catalog__movies-card">
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-title={title}
+      onFocus={onFilmCardFocus}
+    >
       <div className="small-movie-card__image">
-        <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+        <img src={poster} alt={title} width="280" height="175" />
       </div>
       <h3
         className="small-movie-card__title"
@@ -19,8 +25,9 @@ const FilmCard = (props) => {
 };
 
 FilmCard.propTypes = {
-  title: PropTypes.string,
   onFilmHeaderClick: PropTypes.func.isRequired,
+  onFilmCardFocus: PropTypes.func.isRequired,
+  filmData: PropTypes.object,
 };
 
 export default FilmCard;
