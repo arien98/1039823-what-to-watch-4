@@ -5,7 +5,7 @@ import FilmCard from "./film-card";
 describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      onFilmHeaderClick: () => {},
+      onFilmCardClick: () => {},
       onFilmCardFocus: () => {},
       filmData: {
         title: `Aviator`,

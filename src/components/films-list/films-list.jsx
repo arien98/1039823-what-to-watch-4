@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 
 const FilmsList = (props) => {
-  const {filmsTitles, onFilmHeaderClick, onFilmCardFocus, filmsData} = props;
+  const {filmsTitles, onFilmCardClick, onFilmCardFocus, filmsData} = props;
   return (
     <div className="catalog__movies-list">
       {filmsTitles.map((element, i) => <FilmCard
         key={element + i}
         title = {element}
-        onFilmHeaderClick={onFilmHeaderClick}
+        onFilmCardClick={onFilmCardClick}
         onFilmCardFocus={onFilmCardFocus}
         filmData={filmsData[i]}
       />)}
@@ -19,7 +19,7 @@ const FilmsList = (props) => {
 
 FilmsList.propTypes = {
   filmsTitles: PropTypes.arrayOf(PropTypes.string),
-  onFilmHeaderClick: PropTypes.func.isRequired,
+  onFilmCardClick: PropTypes.func.isRequired,
   onFilmCardFocus: PropTypes.func.isRequired,
   filmsData: PropTypes.arrayOf(PropTypes.object),
 };

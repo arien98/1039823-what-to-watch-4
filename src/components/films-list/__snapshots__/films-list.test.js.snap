@@ -6,11 +6,12 @@ exports[`main renders correctly it renders correctly 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    data-title="Bohemian Rhapsody"
     onFocus={[Function]}
   >
     <div
       className="small-movie-card__image"
+      data-id={2}
+      onClick={[Function]}
     >
       <img
         alt="Bohemian Rhapsody"
@@ -25,6 +26,7 @@ exports[`main renders correctly it renders correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
+        data-id={2}
         href="movie-page.html"
       >
         Bohemian Rhapsody
@@ -33,11 +35,12 @@ exports[`main renders correctly it renders correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    data-title="Macbeth"
     onFocus={[Function]}
   >
     <div
       className="small-movie-card__image"
+      data-id={3}
+      onClick={[Function]}
     >
       <img
         alt="Macbeth"
@@ -52,6 +55,7 @@ exports[`main renders correctly it renders correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
+        data-id={3}
         href="movie-page.html"
       >
         Macbeth
@@ -60,11 +64,12 @@ exports[`main renders correctly it renders correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    data-title="Aviator"
     onFocus={[Function]}
   >
     <div
       className="small-movie-card__image"
+      data-id={4}
+      onClick={[Function]}
     >
       <img
         alt="Aviator"
@@ -79,6 +84,7 @@ exports[`main renders correctly it renders correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
+        data-id={4}
         href="movie-page.html"
       >
         Aviator

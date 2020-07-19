@@ -3,11 +3,11 @@
 exports[`main renders correctly it renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  data-title="Aviator"
   onFocus={[Function]}
 >
   <div
     className="small-movie-card__image"
+    onClick={[Function]}
   >
     <img
       alt="Aviator"

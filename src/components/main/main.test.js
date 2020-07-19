@@ -5,6 +5,7 @@ import Main from "./main";
 describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
+      onFilmCardClick: () => {},
       descFilm: {
         title: `Aviator`,
         poster: `../img/aviator.jpg`,
