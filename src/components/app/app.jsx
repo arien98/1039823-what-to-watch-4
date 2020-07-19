@@ -20,7 +20,6 @@ class App extends PureComponent {
 
   render() {
     const {descFilm} = this.props;
-    console.log(descFilm);
 
     return (
       <BrowserRouter>
