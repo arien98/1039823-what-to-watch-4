@@ -136,6 +136,11 @@ const NAMES = [
   `Michelle Dockery`
 ];
 
+const PREVIEWS = [
+  `https://download.blender.org/durian/trailer/sintel_trailer-480p.`,
+  `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+];
+
 const createFilm = () => {
   return {
     id: getRandomIntegerNumber(0, 100000),
@@ -151,6 +156,7 @@ const createFilm = () => {
     director: getRandomArrayItem(NAMES),
     starring: getRandomArrayItems(NAMES, 5),
     runtime: `${getRandomIntegerNumber(0, 2)}h ${getRandomIntegerNumber(0, 59)}m`,
+    preview: getRandomArrayItem(PREVIEWS),
   };
 };
 

@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Video from "../video/video";
 
 const FilmCard = (props) => {
   const {onFilmCardClick, onFilmCardFocus, filmData} = props;
-  const {title, id, poster} = filmData;
+  const {title, id, poster, preview} = filmData;
 
   return (
     <article
@@ -15,12 +16,13 @@ const FilmCard = (props) => {
         onClick={onFilmCardClick}
         data-id={id}
       >
-        <img
+        <Video poster={poster} preview={preview}/>
+        {/* <img
           src={poster}
           alt={title}
           width="280"
           height="175"
-        />
+        /> */}
       </div>
       <h3
         className="small-movie-card__title"
