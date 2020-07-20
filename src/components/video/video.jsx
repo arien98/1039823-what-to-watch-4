@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Video = (props) => {
   const {poster, preview} = props;
   return (
-    <video controls muted poster={poster}>
+    <video autoPlay muted poster={poster} width="280" height="175">
       <source src={preview}/>
     </video>
   );

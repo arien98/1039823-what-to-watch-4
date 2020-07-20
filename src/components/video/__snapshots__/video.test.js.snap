@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`main renders correctly it renders correctly 1`] = `
+<video
+  autoPlay={true}
+  height="175"
+  muted={true}
+  poster="../img/aviator.jpg"
+  width="280"
+>
+  <source
+    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+  />
+</video>
+`;

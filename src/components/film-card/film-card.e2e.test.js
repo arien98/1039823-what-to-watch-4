@@ -9,27 +9,26 @@ configure({adapter: new Adapter()});
 describe(`film card`, () => {
   const props = {
     onFilmCardClick: () => {},
-    onFilmCardFocus: () => {},
     filmData: {
       title: `Aviator`,
-      genre: `Drama`,
+      id: `01`,
     }
   };
 
-  test(`check on focus`, () => {
-    const onFocus = jest.fn();
+  test(`check on mouseover`, () => {
+    const onMouseOver = jest.fn();
 
     const filmCard = shallow(
         <FilmCard
           {...props}
-          onFilmCardFocus = {onFocus}
+          onMouseOver = {onMouseOver}
         />
     );
 
     const filmHeader = filmCard.find(`.small-movie-card`);
 
-    filmHeader.simulate(`focus`);
+    filmHeader.simulate(`mouseover`);
 
-    expect(onFocus).toHaveBeenCalled();
+    expect(onMouseOver).toHaveBeenCalled();
   });
 });

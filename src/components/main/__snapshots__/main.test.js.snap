@@ -259,12 +259,13 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onFocus={[Function]}
         >
           <div
             className="small-movie-card__image"
             data-id={2}
             onClick={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Bohemian Rhapsody"
@@ -288,12 +289,13 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onFocus={[Function]}
         >
           <div
             className="small-movie-card__image"
             data-id={3}
             onClick={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Macbeth"
@@ -317,12 +319,13 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onFocus={[Function]}
         >
           <div
             className="small-movie-card__image"
             data-id={4}
             onClick={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
             <img
               alt="Aviator"

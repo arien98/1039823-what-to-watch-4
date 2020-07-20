@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 
-const onFilmCardFocus = () => {};
-
 const Main = (props) => {
   const {descFilm, filmsTitles, filmsData, onFilmCardClick} = props;
   const {title, poster, genre, releaseDate} = descFilm;
@@ -103,7 +101,6 @@ const Main = (props) => {
         <FilmsList
           filmsTitles={filmsTitles}
           onFilmCardClick={onFilmCardClick}
-          onFilmCardFocus={onFilmCardFocus}
           filmsData={filmsData}
         />
 

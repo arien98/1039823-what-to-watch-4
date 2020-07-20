@@ -1,48 +1,64 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import Video from "../video/video";
+import Video from "../video/video.jsx";
 
-const FilmCard = (props) => {
-  const {onFilmCardClick, onFilmCardFocus, filmData} = props;
-  const {title, id, poster, preview} = filmData;
+class FilmCard extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return (
-    <article
-      className="small-movie-card catalog__movies-card"
-      onFocus={onFilmCardFocus}
-    >
-      <div
-        className="small-movie-card__image"
-        onClick={onFilmCardClick}
-        data-id={id}
+    this.state = {isVideoPlaying: false};
+    this._onMouseOver = this._onMouseOver.bind(this);
+    this._onMouseOut = this._onMouseOut.bind(this);
+  }
+
+  render() {
+    const {onFilmCardClick, filmData} = this.props;
+    const {title, id, poster, preview} = filmData;
+
+    return (
+      <article
+        className="small-movie-card catalog__movies-card"
       >
-        <Video poster={poster} preview={preview}/>
-        {/* <img
-          src={poster}
-          alt={title}
-          width="280"
-          height="175"
-        /> */}
-      </div>
-      <h3
-        className="small-movie-card__title"
-        onClick={onFilmCardClick}
-      >
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
+        <div
+          className="small-movie-card__image"
+          onClick={onFilmCardClick}
+          onMouseOver={this._onMouseOver}
+          onMouseOut={this._onMouseOut}
           data-id={id}
         >
-          {title}
-        </a>
-      </h3>
-    </article>
-  );
-};
+          {this.state.isVideoPlaying
+            ? <Video preview={preview} poster={poster} />
+            : <img src={poster} alt={title} width="280" height="175" />
+          }
+        </div>
+        <h3
+          className="small-movie-card__title"
+          onClick={onFilmCardClick}
+        >
+          <a
+            className="small-movie-card__link"
+            href="movie-page.html"
+            data-id={id}
+          >
+            {title}
+          </a>
+        </h3>
+      </article>
+    );
+  }
+
+  _onMouseOver() {
+    this.playerTimer = setTimeout(() => this.setState({isVideoPlaying: true}), 1000);
+  }
+
+  _onMouseOut() {
+    this.setState({isVideoPlaying: false});
+    clearTimeout(this.playerTimer);
+  }
+}
 
 FilmCard.propTypes = {
   onFilmCardClick: PropTypes.func.isRequired,
-  onFilmCardFocus: PropTypes.func.isRequired,
   filmData: PropTypes.object,
 };
 
