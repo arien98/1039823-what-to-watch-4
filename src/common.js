@@ -22,3 +22,9 @@ export const getRandomArrayItems = (array, number) => {
   }
   return newArray;
 };
+
+export const TabsType = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};

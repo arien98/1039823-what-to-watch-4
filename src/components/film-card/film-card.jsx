@@ -47,6 +47,10 @@ class FilmCard extends PureComponent {
     );
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.playerTimer);
+  }
+
   _onMouseOver() {
     this.playerTimer = setTimeout(() => this.setState({isVideoPlaying: true}), 1000);
   }

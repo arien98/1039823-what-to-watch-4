@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 
 const FilmsList = (props) => {
-  const {filmsTitles, onFilmCardClick, filmsData} = props;
+  const {onFilmCardClick, filmsData} = props;
+
+  const filmsTitles = filmsData.map((element) => {
+    return element.title;
+  });
+
   return (
     <div className="catalog__movies-list">
       {filmsTitles.map((element, i) => <FilmCard

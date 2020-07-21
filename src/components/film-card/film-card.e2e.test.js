@@ -21,11 +21,12 @@ describe(`film card`, () => {
     const filmCard = shallow(
         <FilmCard
           {...props}
-          onMouseOver = {onMouseOver}
         />
     );
 
-    const filmHeader = filmCard.find(`.small-movie-card`);
+    const filmHeader = filmCard.find(`.small-movie-card__image`);
+
+    filmHeader.onMouseOver = onMouseOver;
 
     filmHeader.simulate(`mouseover`);
 
