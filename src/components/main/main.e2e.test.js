@@ -33,14 +33,25 @@ describe(`main page`, () => {
     ]
   };
 
-  test(`should run callback on click`, () => {
+  test(`should run callback on click on header`, () => {
     const onClick = jest.fn();
-    const mainComponent = mount(<Main {...props} onFilmHeaderClick={onClick} />);
+    const mainComponent = mount(<Main {...props} onFilmCardClick={onClick} />);
 
     const filmHeaders = mainComponent.find(`small-movie-card__link`);
 
     filmHeaders.forEach((it) => it.simulate(`click`));
 
     expect(onClick.mock.calls.length).toEqual(filmHeaders.length);
+  });
+
+  test(`should run callback on click on image`, () => {
+    const onClick = jest.fn();
+    const mainComponent = mount(<Main {...props} onFilmCardClick={onClick} />);
+
+    const filmCardImages = mainComponent.find(`small-movie-card__image`);
+
+    filmCardImages.forEach((it) => it.simulate(`click`));
+
+    expect(onClick.mock.calls.length).toEqual(filmCardImages.length);
   });
 });

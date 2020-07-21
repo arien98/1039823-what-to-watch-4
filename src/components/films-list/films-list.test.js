@@ -6,7 +6,7 @@ describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
       filmsTitles: [`Bohemian Rhapsody`, `Macbeth`, `Aviator`],
-      onFilmHeaderClick: () => {},
+      onFilmCardClick: () => {},
       onFilmCardFocus: () => {},
       filmsData: [{
         id: 2,

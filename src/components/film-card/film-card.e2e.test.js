@@ -8,7 +8,7 @@ configure({adapter: new Adapter()});
 
 describe(`film card`, () => {
   const props = {
-    onFilmHeaderClick: () => {},
+    onFilmCardClick: () => {},
     onFilmCardFocus: () => {},
     filmData: {
       title: `Aviator`,

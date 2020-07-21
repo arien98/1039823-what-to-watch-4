@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 
-const onFilmHeaderClick = () => {};
-
 const onFilmCardFocus = () => {};
 
 const Main = (props) => {
-  const {descFilm, filmsTitles, filmsData} = props;
+  const {descFilm, filmsTitles, filmsData, onFilmCardClick} = props;
   const {title, poster, genre, releaseDate} = descFilm;
   return <>
     <section className="movie-card">
@@ -104,7 +102,7 @@ const Main = (props) => {
 
         <FilmsList
           filmsTitles={filmsTitles}
-          onFilmHeaderClick={onFilmHeaderClick}
+          onFilmCardClick={onFilmCardClick}
           onFilmCardFocus={onFilmCardFocus}
           filmsData={filmsData}
         />
@@ -135,6 +133,7 @@ Main.propTypes = {
   descFilm: PropTypes.object,
   filmsTitles: PropTypes.arrayOf(PropTypes.string),
   filmsData: PropTypes.arrayOf(PropTypes.object),
+  onFilmCardClick: PropTypes.func.isRequired,
 };
 
 export default Main;
