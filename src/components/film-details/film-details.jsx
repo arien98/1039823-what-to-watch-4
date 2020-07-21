@@ -13,7 +13,7 @@ class FilmDetails extends PureComponent {
   }
 
   render() {
-    const {filmData, filmsAlikeData} = this.props;
+    const {filmData, filmsAlikeData, onFilmCardClick} = this.props;
 
     const {
       title,
@@ -110,7 +110,7 @@ class FilmDetails extends PureComponent {
           </div>
         </section>
 
-        <MoreFilmsAlike filmsAlikeData={filmsAlikeData}/>
+        <MoreFilmsAlike filmsAlikeData={filmsAlikeData} onFilmCardClick={onFilmCardClick}/>
       </>
     );
   }
@@ -122,8 +122,9 @@ class FilmDetails extends PureComponent {
 }
 
 FilmDetails.propTypes = {
-  filmData: PropTypes.object,
-  filmsAlikeData: PropTypes.arrayOf(PropTypes.object),
+  filmData: PropTypes.object.isRequired,
+  filmsAlikeData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onFilmCardClick: PropTypes.func.isRequired,
 };
 
 export default FilmDetails;

@@ -1,8 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const ReviewsTab = (props) => {
-  const {} = props;
+const ReviewsTab = () => {
 
   return (
     <div className="movie-card__reviews movie-card__row">

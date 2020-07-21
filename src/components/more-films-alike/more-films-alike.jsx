@@ -4,7 +4,7 @@ import FilmsList from "../films-list/films-list.jsx";
 import Footer from "../footer/footer.jsx";
 
 const MoreFilmsAlike = (props) => {
-  const {filmsAlikeData} = props;
+  const {filmsAlikeData, onFilmCardClick} = props;
 
   return (
     <>
@@ -15,6 +15,7 @@ const MoreFilmsAlike = (props) => {
           <div className="catalog__movies-list">
             <FilmsList
               filmsData={filmsAlikeData}
+              onFilmCardClick={onFilmCardClick}
             />
           </div>
         </section>
@@ -27,6 +28,7 @@ const MoreFilmsAlike = (props) => {
 
 MoreFilmsAlike.propTypes = {
   filmsAlikeData: PropTypes.arrayOf(PropTypes.object),
+  onFilmCardClick: PropTypes.func.isRequired,
 };
 
 export default MoreFilmsAlike;

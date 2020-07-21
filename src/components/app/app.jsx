@@ -14,13 +14,13 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {screenMode: ScreenMode.MAIN};
+    this.state = {screenMode: ScreenMode.MAIN, clickedFilmId: null};
     this._onFilmCardClick = this._onFilmCardClick.bind(this);
     this.clickedFilm = null;
   }
 
   render() {
-    const {descFilm} = this.props;
+    const {filmsData} = this.props;
 
     return (
       <BrowserRouter>
@@ -30,7 +30,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-component">
             <FilmDetails
-              filmData={descFilm}
+              filmData={filmsData[0]}
+              filmsAlikeData={filmsData.slice(0, 4)}
+              onFilmCardClick={this._onFilmCardClick}
             />
           </Route>
         </Switch>
@@ -57,6 +59,7 @@ class App extends PureComponent {
           <FilmDetails
             filmData={this.clickedFilm}
             filmsAlikeData={this._getFilmsAlike()}
+            onFilmCardClick={this._onFilmCardClick}
           />
         );
     }
@@ -65,11 +68,13 @@ class App extends PureComponent {
 
   _onFilmCardClick(evt) {
     evt.preventDefault();
-    this.setState({screenMode: ScreenMode.DETAILS});
+
     const clickedFilmId = evt.target.dataset.id;
     this.clickedFilm = this.props.filmsData.find((element) => {
       return element.id.toString() === clickedFilmId;
     });
+
+    this.setState({screenMode: ScreenMode.DETAILS, clickedFilmId});
   }
 
   _getFilmsAlike() {

@@ -12,6 +12,7 @@ exports[`main renders correctly it renders correctly 1`] = `
   >
     <img
       alt="Aviator"
+      className="small-movie-card__pic"
       height="175"
       width="280"
     />

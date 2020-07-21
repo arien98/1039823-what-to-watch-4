@@ -9,11 +9,8 @@ const Tabs = (props) => {
   const {currentTab, filmData} = props;
 
   const {
-    title,
     genre,
     releaseDate,
-    poster,
-    bigPoster,
     ratingScore,
     ratingLevel,
     ratingCount,

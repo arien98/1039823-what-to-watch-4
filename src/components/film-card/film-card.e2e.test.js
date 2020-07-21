@@ -1,5 +1,5 @@
 import React from "react";
-import {configure, shallow} from 'enzyme';
+import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import FilmCard from "./film-card.jsx";
 
@@ -12,24 +12,26 @@ describe(`film card`, () => {
     filmData: {
       title: `Aviator`,
       id: `01`,
+      poster: `img/avatar.jpg`,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     }
   };
 
   test(`check on mouseover`, () => {
-    const onMouseOver = jest.fn();
-
-    const filmCard = shallow(
+    const filmCard = mount(
         <FilmCard
           {...props}
         />
     );
 
-    const filmHeader = filmCard.find(`.small-movie-card__image`);
+    expect(filmCard.find(`.small-movie-card__video`)).toHaveLength(0);
+    expect(filmCard.find(`.small-movie-card__pic`)).toHaveLength(1);
 
-    filmHeader.onMouseOver = onMouseOver;
+    const filmImage = filmCard.find(`.small-movie-card__image`);
 
-    filmHeader.simulate(`mouseover`);
+    filmImage.simulate(`mouseover`);
 
-    expect(onMouseOver).toHaveBeenCalled();
+    expect(filmCard.find(`.small-movie-card__video`)).toHaveLength(1);
+    expect(filmCard.find(`.small-movie-card__pic`)).toHaveLength(0);
   });
 });

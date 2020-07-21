@@ -28,7 +28,7 @@ class FilmCard extends PureComponent {
         >
           {this.state.isVideoPlaying
             ? <Video preview={preview} poster={poster} />
-            : <img src={poster} alt={title} width="280" height="175" />
+            : <img className="small-movie-card__pic" src={poster} alt={title} width="280" height="175" />
           }
         </div>
         <h3
@@ -47,23 +47,18 @@ class FilmCard extends PureComponent {
     );
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.playerTimer);
-  }
-
   _onMouseOver() {
-    this.playerTimer = setTimeout(() => this.setState({isVideoPlaying: true}), 1000);
+    this.setState({isVideoPlaying: true});
   }
 
   _onMouseOut() {
     this.setState({isVideoPlaying: false});
-    clearTimeout(this.playerTimer);
   }
 }
 
 FilmCard.propTypes = {
   onFilmCardClick: PropTypes.func.isRequired,
-  filmData: PropTypes.object,
+  filmData: PropTypes.object.isRequired,
 };
 
 export default FilmCard;

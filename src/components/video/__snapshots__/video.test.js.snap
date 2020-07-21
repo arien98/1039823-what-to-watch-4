@@ -3,6 +3,7 @@
 exports[`main renders correctly it renders correctly 1`] = `
 <video
   autoPlay={true}
+  className="small-movie-card__video"
   height="175"
   muted={true}
   poster="../img/aviator.jpg"
