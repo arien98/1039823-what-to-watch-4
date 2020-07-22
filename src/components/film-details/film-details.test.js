@@ -5,6 +5,24 @@ import FilmDetails from "../film-details/film-details.jsx";
 describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
+      onFilmCardClick: () => {},
+      filmsAlikeData: [
+        {
+          id: 2,
+          title: `Bohemian Rhapsody`,
+          poster: `img/bohemian-rhapsody.jpg`,
+        },
+        {
+          id: 3,
+          title: `Macbeth`,
+          poster: `img/macbeth.jpg`,
+        },
+        {
+          id: 4,
+          title: `Aviator`,
+          poster: `img/aviator.jpg`,
+        },
+      ],
       filmData: {
         bigPoster: `img/johnny-english.jpg`,
         description: `A hardened CIA operative finds himself at the mercy of a precocious 9-year-old girl, having been sent undercover to surveil her family.`,

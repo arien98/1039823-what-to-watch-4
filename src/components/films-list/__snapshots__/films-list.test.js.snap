@@ -6,15 +6,17 @@ exports[`main renders correctly it renders correctly 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    onFocus={[Function]}
   >
     <div
       className="small-movie-card__image"
       data-id={2}
       onClick={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
       <img
         alt="Bohemian Rhapsody"
+        className="small-movie-card__pic"
         height="175"
         src="img/bohemian-rhapsody.jpg"
         width="280"
@@ -35,15 +37,17 @@ exports[`main renders correctly it renders correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onFocus={[Function]}
   >
     <div
       className="small-movie-card__image"
       data-id={3}
       onClick={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
       <img
         alt="Macbeth"
+        className="small-movie-card__pic"
         height="175"
         src="img/macbeth.jpg"
         width="280"
@@ -64,15 +68,17 @@ exports[`main renders correctly it renders correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onFocus={[Function]}
   >
     <div
       className="small-movie-card__image"
       data-id={4}
       onClick={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
       <img
         alt="Aviator"
+        className="small-movie-card__pic"
         height="175"
         src="img/aviator.jpg"
         width="280"

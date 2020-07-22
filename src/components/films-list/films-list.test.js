@@ -7,7 +7,6 @@ describe(`main renders correctly`, () => {
     const props = {
       filmsTitles: [`Bohemian Rhapsody`, `Macbeth`, `Aviator`],
       onFilmCardClick: () => {},
-      onFilmCardFocus: () => {},
       filmsData: [{
         id: 2,
         title: `Bohemian Rhapsody`,
