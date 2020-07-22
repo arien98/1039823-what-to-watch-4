@@ -156,7 +156,6 @@ Array [
         >
           <nav
             className="movie-nav movie-card__nav"
-            onClick={[Function]}
           >
             <ul
               className="movie-nav__list"
@@ -168,6 +167,7 @@ Array [
                   className="movie-nav__link"
                   data-tab="Overview"
                   href="#"
+                  onClick={[Function]}
                 >
                   Overview
                 </a>
@@ -179,6 +179,7 @@ Array [
                   className="movie-nav__link"
                   data-tab="Details"
                   href="#"
+                  onClick={[Function]}
                 >
                   Details
                 </a>
@@ -190,6 +191,7 @@ Array [
                   className="movie-nav__link"
                   data-tab="Reviews"
                   href="#"
+                  onClick={[Function]}
                 >
                   Reviews
                 </a>

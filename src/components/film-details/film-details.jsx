@@ -85,18 +85,27 @@ class FilmDetails extends PureComponent {
               <div className="movie-card__desc">
                 <nav
                   className="movie-nav movie-card__nav"
-                  onClick={this._onTabClick}
                 >
                   <ul className="movie-nav__list">
-                    <li className={`movie-nav__item ${this.state.currentTab === TabsType.OVERVIEW ? `movie-nav__item--active` : ``}`}>
-                      <a href="#" className="movie-nav__link" data-tab={TabsType.OVERVIEW}>Overview</a>
-                    </li>
-                    <li className={`movie-nav__item ${this.state.currentTab === TabsType.DETAILS ? `movie-nav__item--active` : ``}`}>
-                      <a href="#" className="movie-nav__link" data-tab={TabsType.DETAILS}>Details</a>
-                    </li>
-                    <li className={`movie-nav__item ${this.state.currentTab === TabsType.REVIEWS ? `movie-nav__item--active` : ``}`}>
-                      <a href="#" className="movie-nav__link" data-tab={TabsType.REVIEWS}>Reviews</a>
-                    </li>
+
+                    {Object.values(TabsType).map((element, i) => {
+                      return (
+                        <li
+                          key={Math.random + i}
+                          className={`movie-nav__item ${this.state.currentTab === element ? `movie-nav__item--active` : ``}`}
+                        >
+                          <a
+                            href="#"
+                            className="movie-nav__link"
+                            data-tab={element}
+                            onClick={this._onTabClick}
+                          >
+                            {element}
+                          </a>
+                        </li>
+                      );
+                    })}
+
                   </ul>
                 </nav>
 
