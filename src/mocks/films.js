@@ -1,4 +1,4 @@
-import {getRandomArrayItem, getRandomIntegerNumber, getRandomArrayItems} from "../common";
+import {getRandomArrayItem, getRandomIntegerNumber, getRandomArrayItems, Genres} from "../common";
 
 const TITLES = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -50,10 +50,7 @@ const POSTERS = [
   `img/what-we-do-in-the-shadows.jpg`,
 ];
 
-const GENRES = [
-  `drama`,
-  `comedy`,
-];
+const GENRES = Object.values(Genres);
 
 const RATING_LEVELS = [
   `Very good`,
@@ -116,5 +113,7 @@ const generateFilmsData = (filmsNumber) => {
     .fill(``)
     .map(createFilm);
 };
+
+export const promoFilm = createFilm();
 
 export const filmsData = generateFilmsData(8);

@@ -3,17 +3,16 @@ import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import {TabsType} from "../../common.js";
 import MoreFilmsAlike from "../more-films-alike/more-films-alike.jsx";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 
 class FilmDetails extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {currentTab: TabsType.OVERVIEW};
-    this._onTabClick = this._onTabClick.bind(this);
   }
 
   render() {
-    const {filmData, filmsAlikeData, onFilmCardClick} = this.props;
+    const {filmData, onFilmCardClick, onTabClick, currentTab} = this.props;
 
     const {
       title,
@@ -92,13 +91,13 @@ class FilmDetails extends PureComponent {
                       return (
                         <li
                           key={Math.random + i}
-                          className={`movie-nav__item ${this.state.currentTab === element ? `movie-nav__item--active` : ``}`}
+                          className={`movie-nav__item ${currentTab === element ? `movie-nav__item--active` : ``}`}
                         >
                           <a
                             href="#"
                             className="movie-nav__link"
                             data-tab={element}
-                            onClick={this._onTabClick}
+                            onClick={onTabClick}
                           >
                             {element}
                           </a>
@@ -111,7 +110,7 @@ class FilmDetails extends PureComponent {
 
                 <Tabs
                   filmData={filmData}
-                  currentTab={this.state.currentTab}
+                  currentTab={currentTab}
                 />
 
               </div>
@@ -119,21 +118,43 @@ class FilmDetails extends PureComponent {
           </div>
         </section>
 
-        <MoreFilmsAlike filmsAlikeData={filmsAlikeData} onFilmCardClick={onFilmCardClick}/>
+        <MoreFilmsAlike filmsAlike={this._getFilmsAlike()} onFilmCardClick={onFilmCardClick}/>
       </>
     );
   }
 
-  _onTabClick(evt) {
-    evt.preventDefault();
-    this.setState({currentTab: evt.target.dataset.tab});
+  _getFilmsAlike() {
+    const {filmsData, filmData} = this.props;
+    return filmsData
+      .filter((it) => {
+        return it.genre === filmData.genre;
+      })
+      .slice(0, 4);
   }
 }
 
 FilmDetails.propTypes = {
   filmData: PropTypes.object.isRequired,
-  filmsAlikeData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
+  onTabClick: PropTypes.func.isRequired,
+  currentTab: PropTypes.string.isRequired,
 };
 
-export default FilmDetails;
+const mapStateToProps = (state) => ({
+  currentTab: state.currentTab,
+  filmData: state.showedFilm,
+  filmsData: state.films,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onTabClick(evt) {
+    evt.preventDefault();
+    const tab = evt.target.dataset.tab;
+    dispatch(ActionCreator.changeTab(tab));
+  },
+});
+
+export {FilmDetails};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDetails);

@@ -3,24 +3,13 @@ import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
-
-const ScreenMode = {
-  MAIN: `main page`,
-  DETAILS: `film details`,
-};
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+import {ScreenMode} from "../../common.js";
 
 class App extends PureComponent {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {screenMode: ScreenMode.MAIN, showedFilm: null};
-    this._onFilmCardClick = this._onFilmCardClick.bind(this);
-  }
-
   render() {
-    const {filmsData} = this.props;
-
     return (
       <BrowserRouter>
         <Switch>
@@ -28,11 +17,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-component">
-            <FilmDetails
-              filmData={filmsData[0]}
-              filmsAlikeData={filmsData.slice(0, 4)}
-              onFilmCardClick={this._onFilmCardClick}
-            />
+            <FilmDetails />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -40,56 +25,55 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {descFilm, filmsData} = this.props;
+    const {filmsData, screenMode, onFilmCardClick, promoFilm} = this.props;
 
-    switch (this.state.screenMode) {
+    switch (screenMode) {
       case ScreenMode.MAIN:
 
         return (
           <Main
-            descFilm={descFilm}
-            filmsData={filmsData}
-            onFilmCardClick={this._onFilmCardClick}
+            promoFilm={promoFilm}
+            onFilmCardClick={onFilmCardClick(filmsData)}
           />
         );
 
       case ScreenMode.DETAILS:
         return (
-          <FilmDetails
-            filmData={this.state.showedFilm}
-            filmsAlikeData={this._getFilmsAlike()}
-            onFilmCardClick={this._onFilmCardClick}
-          />
+          <FilmDetails onFilmCardClick={onFilmCardClick(filmsData)} />
         );
     }
     return null;
   }
-
-  _onFilmCardClick(evt) {
-    evt.preventDefault();
-
-    const clickedFilmId = evt.target.dataset.id;
-    const clickedFilm = this.props.filmsData.find((element) => {
-      return element.id.toString() === clickedFilmId;
-    });
-
-    this.setState({screenMode: ScreenMode.DETAILS, showedFilm: clickedFilm});
-  }
-
-  _getFilmsAlike() {
-    return this.props.filmsData
-      .filter((it) => {
-        return it.genre === this.state.showedFilm.genre;
-      })
-      .slice(0, 4);
-  }
-
 }
 
 
 App.propTypes = {
-  descFilm: PropTypes.object,
+  promoFilm: PropTypes.object,
   filmsData: PropTypes.arrayOf(PropTypes.object),
+  screenMode: PropTypes.string.isRequired,
+  onFilmCardClick: PropTypes.func.isRequired,
+  showedFilm: PropTypes.object,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  screenMode: state.screenMode,
+  showedFilm: state.showedFilm,
+  filmsData: state.films,
+  promoFilm: state.promoFilm,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilmCardClick(filmsData) {
+    return (evt) => {
+      evt.preventDefault();
+      const clickedFilmId = evt.target.dataset.id;
+      const clickedFilm = filmsData.find((element) => {
+        return element.id.toString() === clickedFilmId;
+      });
+      dispatch(ActionCreator.showDetails(clickedFilm));
+    };
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

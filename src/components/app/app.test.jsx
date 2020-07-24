@@ -5,7 +5,7 @@ import App from "./app";
 describe(`app renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      descFilm: {
+      promoFilm: {
         title: `Aviator`,
         poster: `../img/aviator.jpg`,
         genre: `Drama`,

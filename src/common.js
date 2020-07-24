@@ -28,3 +28,25 @@ export const TabsType = {
   DETAILS: `Details`,
   REVIEWS: `Reviews`,
 };
+
+export const Genres = {
+  ALL: `Show all`,
+  COMEDIES: `Comedies`,
+  CRIMES: `Crime`,
+  DOCUMENTARY: `Documentary`,
+  DRAMAS: `Dramas`,
+  HORROR: `Horror`,
+  KIDS_AND_FAMILY: `Kids & Family`,
+  ROMANCE: `Romance`,
+  SCI_FI: `Sci-Fi`,
+  THRILLERS: `Thrillers`,
+};
+
+export const ScreenMode = {
+  MAIN: `main page`,
+  DETAILS: `film details`,
+};
+
+export const extend = (state, newState) => {
+  return Object.assign({}, state, newState);
+};

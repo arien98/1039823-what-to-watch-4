@@ -6,7 +6,7 @@ describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
       onFilmCardClick: () => {},
-      descFilm: {
+      promoFilm: {
         title: `Aviator`,
         poster: `../img/aviator.jpg`,
         genre: `Drama`,

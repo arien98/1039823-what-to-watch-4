@@ -8,7 +8,7 @@ configure({adapter: new Adapter()});
 
 describe(`main page`, () => {
   const props = {
-    descFilm: {
+    promoFilm: {
       title: `Aviator`,
       poster: `../img/aviator.jpg`,
       genre: `Drama`,
