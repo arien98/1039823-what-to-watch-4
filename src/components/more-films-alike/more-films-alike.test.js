@@ -6,7 +6,7 @@ describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
       onFilmCardClick: () => {},
-      filmsAlikeData: [
+      filmsAlike: [
         {
           id: 2,
           title: `Bohemian Rhapsody`,

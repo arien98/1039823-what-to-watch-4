@@ -42,6 +42,22 @@ export const Genres = {
   THRILLERS: `Thrillers`,
 };
 
+export const getGenres = (filmsData) => {
+  return filmsData.map((it) => {
+    const genre = it.genre;
+    switch (genre) {
+      case `Comedy`:
+        return `Comedies`;
+      case `Thriller`:
+        return `Thrillers`;
+      case `Drama`:
+        return `Dramas`;
+      default:
+        return genre;
+    }
+  });
+};
+
 export const ScreenMode = {
   MAIN: `main page`,
   DETAILS: `film details`,

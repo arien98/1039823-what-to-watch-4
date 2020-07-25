@@ -1,12 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmDetails from "../film-details/film-details.jsx";
+import {TabsType} from "../../common.js";
 
 describe(`main renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
       onFilmCardClick: () => {},
-      filmsAlikeData: [
+      onTabClick: () => {},
+      currentTab: TabsType.OVERVIEW,
+      filmsData: [
         {
           id: 2,
           title: `Bohemian Rhapsody`,

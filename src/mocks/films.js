@@ -1,4 +1,4 @@
-import {getRandomArrayItem, getRandomIntegerNumber, getRandomArrayItems, Genres} from "../common";
+import {getRandomArrayItem, getRandomIntegerNumber, getRandomArrayItems} from "../common";
 
 const TITLES = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -50,7 +50,17 @@ const POSTERS = [
   `img/what-we-do-in-the-shadows.jpg`,
 ];
 
-const GENRES = Object.values(Genres);
+const GENRES = [
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+  `Dramas`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-Fi`,
+  `Thrillers`,
+];
 
 const RATING_LEVELS = [
   `Very good`,
