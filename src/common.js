@@ -30,7 +30,7 @@ export const TabsType = {
 };
 
 export const Genres = {
-  ALL: `Show all`,
+  ALL: `All genres`,
   COMEDIES: `Comedies`,
   CRIMES: `Crime`,
   DOCUMENTARY: `Documentary`,

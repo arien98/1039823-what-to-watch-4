@@ -4,9 +4,10 @@ import FilmsList from "../films-list/films-list.jsx";
 import {Genres} from "../../common.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const Catalog = (props) => {
-  const {filmsData, onFilmCardClick, filter, onFilterClick} = props;
+  const {filmsData, onFilmCardClick, filter, onFilterClick, filmsOnPage, onShowMoreButtonClick} = props;
 
   return (
     <section className="catalog">
@@ -31,28 +32,32 @@ const Catalog = (props) => {
         ?
         <FilmsList
           onFilmCardClick={onFilmCardClick}
-          filmsData={filmsData}
+          filmsData={filmsData.slice(0, filmsOnPage)}
         />
         : ``
       }
 
-      <div className="catalog__more">
-        <button className="catalog__button" type="button">Show more</button>
-      </div>
+      {filmsOnPage < filmsData.length
+        ? <ShowMoreButton onShowMoreButtonClick={onShowMoreButtonClick} />
+        : ``}
+
     </section>
   );
 };
 
 Catalog.propTypes = {
-  onFilmCardClick: PropTypes.func.isRequired,
   filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   filter: PropTypes.string.isRequired,
+  filmsOnPage: PropTypes.number.isRequired,
+  onFilmCardClick: PropTypes.func.isRequired,
   onFilterClick: PropTypes.func.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   filter: state.filter,
   filmsData: state.films,
+  filmsOnPage: state.filmsOnPage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -64,6 +69,10 @@ const mapDispatchToProps = (dispatch) => ({
     } else {
       dispatch(ActionCreator.filterByGenre(targetFilter));
     }
+  },
+
+  onShowMoreButtonClick() {
+    dispatch(ActionCreator.showMoreFilms());
   },
 });
 

@@ -126,4 +126,4 @@ const generateFilmsData = (filmsNumber) => {
 
 export const promoFilm = createFilm();
 
-export const filmsData = generateFilmsData(8);
+export const filmsData = generateFilmsData(16);

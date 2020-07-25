@@ -7,7 +7,11 @@ const ActionType = {
   SHOW_MAIN: `show main page`,
   SHOW_DETAILS: `show film details page`,
   CHANGE_TAB: `change tab on film details page`,
+  SHOW_MORE_FILMS: `show more films on main page`,
 };
+
+const FILMS_COUNT_ON_START = 8;
+const ADD_FILMS_COUNT = 8;
 
 const ActionCreator = {
   showAll: () => ({
@@ -30,6 +34,10 @@ const ActionCreator = {
     type: ActionType.CHANGE_TAB,
     tab,
   }),
+  showMoreFilms: () => ({
+    type: ActionType.SHOW_MORE_FILMS,
+    payload: ADD_FILMS_COUNT,
+  }),
 };
 
 const initialState = {
@@ -39,6 +47,7 @@ const initialState = {
   screenMode: ScreenMode.MAIN,
   showedFilm: null,
   currentTab: TabsType.OVERVIEW,
+  filmsOnPage: FILMS_COUNT_ON_START,
 };
 
 const reducer = (state = initialState, action) => {
@@ -63,6 +72,9 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.CHANGE_TAB:
       return extend(state, {currentTab: action.tab});
+
+    case ActionType.SHOW_MORE_FILMS:
+      return extend(state, {filmsOnPage: state.filmsOnPage + action.payload});
   }
   return state;
 };

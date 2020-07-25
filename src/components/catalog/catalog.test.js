@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Catalog from "./catalog";
-import {Genres} from "../../common";
 
 describe(`app renders correctly`, () => {
   test(`it renders correctly`, () => {
@@ -31,7 +30,9 @@ describe(`app renders correctly`, () => {
       ],
       onFilmCardClick: () => {},
       onFilterClick: () => {},
-      filter: Genres.ALL
+      filter: `Show all`,
+      filmsOnPage: 8,
+      onShowMoreButtonClick: () => {},
     };
 
     const tree = renderer
