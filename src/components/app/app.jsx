@@ -30,9 +30,11 @@ class App extends PureComponent {
     switch (screenMode) {
       case ScreenMode.MAIN:
 
+        console.log(filmsData);
         return (
           <Main
             promoFilm={promoFilm}
+            filmsData={filmsData}
             onFilmCardClick={onFilmCardClick(filmsData)}
           />
         );

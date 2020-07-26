@@ -4,7 +4,7 @@ import Footer from "../footer/footer.jsx";
 import Catalog from "../catalog/catalog.jsx";
 
 const Main = (props) => {
-  const {promoFilm, onFilmCardClick} = props;
+  const {promoFilm, filmsData, onFilmCardClick} = props;
   const {title, poster, genre, releaseDate} = promoFilm;
   return <>
     <section className="movie-card">
@@ -63,7 +63,7 @@ const Main = (props) => {
     </section>
 
     <div className="page-content">
-      <Catalog onFilmCardClick={onFilmCardClick}/>
+      <Catalog filmsData={filmsData} onFilmCardClick={onFilmCardClick}/>
 
       <Footer />
     </div>

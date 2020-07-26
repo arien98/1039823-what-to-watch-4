@@ -2,16 +2,10 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Catalog from "./catalog";
 
-describe(`app renders correctly`, () => {
+describe(`catalog renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      promoFilm: {
-        title: `Aviator`,
-        poster: `../img/aviator.jpg`,
-        genre: `Drama`,
-        releaseDate: 2010,
-      },
-      filmsTitles: [`Bohemian Rhapsody`, `Macbeth`, `Aviator`],
+      onFilmCardClick: () => {},
       filmsData: [{
         id: 2,
         title: `Bohemian Rhapsody`,
@@ -28,11 +22,6 @@ describe(`app renders correctly`, () => {
         poster: `img/aviator.jpg`,
       },
       ],
-      onFilmCardClick: () => {},
-      onFilterClick: () => {},
-      filter: `Show all`,
-      filmsOnPage: 8,
-      onShowMoreButtonClick: () => {},
     };
 
     const tree = renderer
