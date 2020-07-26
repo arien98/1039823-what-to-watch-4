@@ -6,6 +6,7 @@ import Catalog from "../catalog/catalog.jsx";
 const Main = (props) => {
   const {promoFilm, filmsData, onFilmCardClick} = props;
   const {title, poster, genre, releaseDate} = promoFilm;
+
   return <>
     <section className="movie-card">
       <div className="movie-card__bg">

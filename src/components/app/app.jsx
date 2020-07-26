@@ -8,8 +8,13 @@ import {ActionCreator} from "../../reducer.js";
 import {ScreenMode} from "../../common.js";
 
 class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
+    const {onFilmCardClick, filmsData} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -17,7 +22,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-component">
-            <FilmDetails />
+            <FilmDetails onFilmCardClick={onFilmCardClick(filmsData)} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -53,7 +58,6 @@ App.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.object),
   screenMode: PropTypes.string.isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
-  showedFilm: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

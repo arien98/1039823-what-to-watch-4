@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
+import withVideo from "../../hocs/with-video.jsx";
+
+const FilmCardWithVideo = withVideo(FilmCard);
 
 const FilmsList = (props) => {
   const {onFilmCardClick, filmsData} = props;
@@ -11,7 +14,7 @@ const FilmsList = (props) => {
 
   return (
     <div className="catalog__movies-list">
-      {filmsTitles.map((element, i) => <FilmCard
+      {filmsTitles.map((element, i) => <FilmCardWithVideo
         key={element + i}
         title = {element}
         onFilmCardClick={onFilmCardClick}
