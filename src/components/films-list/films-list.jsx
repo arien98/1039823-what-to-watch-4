@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
-import withVideo from "../../hocs/with-video.jsx";
+import withVideo from "../../hocs/with-video/with-video.jsx";
 
 const FilmCardWithVideo = withVideo(FilmCard);
 

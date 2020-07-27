@@ -1,37 +1,42 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoreFilmsAlike from "./more-films-alike.jsx";
+import withFilter from "./with-filter";
 
-describe(`main renders correctly`, () => {
+const MockComponent = () => {
+  return (
+    <div>
+    </div>
+  );
+};
+
+const MockComponentWrapped = withFilter(MockComponent);
+
+describe(`with filter snapshot`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      onFilmCardClick: () => {},
-      filmsAlike: [
+      filmsData: [
         {
           id: 2,
           title: `Bohemian Rhapsody`,
           poster: `img/bohemian-rhapsody.jpg`,
-          preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
         },
         {
           id: 3,
           title: `Macbeth`,
           poster: `img/macbeth.jpg`,
-          preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
         },
         {
           id: 4,
           title: `Aviator`,
           poster: `img/aviator.jpg`,
-          preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
         },
       ],
+      onFilmCardClick: () => {},
     };
 
     const tree = renderer
-      .create(<MoreFilmsAlike {...props} />)
+      .create(<MockComponentWrapped {...props}></MockComponentWrapped>)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
-

@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import Video from "../components/video/video.jsx";
+import Video from "../../components/video/video.jsx";
 
 const withVideo = (Component) => {
 

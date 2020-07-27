@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import Footer from "../footer/footer.jsx";
 import Catalog from "../catalog/catalog.jsx";
+import withButton from "../../hocs/with-show-more-button/with-show-more-button.js";
+import withFilter from "../../hocs/with-filter/with-filter.js";
+
+const SmartCatalog = withFilter(withButton(Catalog));
 
 const Main = (props) => {
   const {promoFilm, filmsData, onFilmCardClick} = props;
@@ -64,7 +68,7 @@ const Main = (props) => {
     </section>
 
     <div className="page-content">
-      <Catalog filmsData={filmsData} onFilmCardClick={onFilmCardClick}/>
+      <SmartCatalog filmsData={filmsData} onFilmCardClick={onFilmCardClick}/>
 
       <Footer />
     </div>
