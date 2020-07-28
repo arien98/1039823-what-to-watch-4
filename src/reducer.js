@@ -21,7 +21,7 @@ const ActionCreator = {
   // }),
   showMain: () => ({
     type: ActionType.SHOW_MAIN,
-    showedFilm: null,
+    showedFilmId: null,
   }),
   showDetails: (id) => ({
     type: ActionType.SHOW_DETAILS,
@@ -38,7 +38,7 @@ const initialState = {
   films: filmsData,
   // filter: Genres.ALL,
   screenMode: ScreenMode.MAIN,
-  showedFilm: null,
+  showedFilmId: null,
   currentTab: TabsType.OVERVIEW,
 };
 
@@ -57,10 +57,10 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.SHOW_DETAILS:
-      return extend(state, {screenMode: ScreenMode.DETAILS, showedFilm: action.showedFilm});
+      return extend(state, {screenMode: ScreenMode.DETAILS, showedFilmId: action.showedFilmId});
 
     case ActionType.SHOW_MAIN:
-      return extend(state, {screenMode: ScreenMode.MAIN, showedFilm: action.showedFilm});
+      return extend(state, {screenMode: ScreenMode.MAIN, showedFilmId: action.showedFilmId});
 
     case ActionType.CHANGE_TAB:
       return extend(state, {currentTab: action.tab});

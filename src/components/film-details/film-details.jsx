@@ -139,7 +139,7 @@ FilmDetails.propTypes = {
 
 const mapStateToProps = (state) => ({
   currentTab: state.currentTab,
-  filmId: state.filmId,
+  filmId: state.showedFilmId,
   filmsData: state.films,
 });
 
