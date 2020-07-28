@@ -1,12 +1,15 @@
 import React from "react";
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import FilmCard from "./film-card.jsx";
+import FilmCard from "../../components/film-card/film-card.jsx";
+import withVideo from "./with-video.jsx";
+
+const FilmCardWithVideo = withVideo(FilmCard);
 
 
 configure({adapter: new Adapter()});
 
-describe(`film card`, () => {
+describe(`film card with video`, () => {
   const props = {
     onFilmCardClick: () => {},
     filmData: {
@@ -23,7 +26,7 @@ describe(`film card`, () => {
 
   test(`check on mouseover`, () => {
     const filmCard = mount(
-        <FilmCard
+        <FilmCardWithVideo
           {...props}
         />
     );

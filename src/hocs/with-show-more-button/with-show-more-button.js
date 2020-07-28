@@ -15,10 +15,6 @@ const withButton = (Component) => {
       this._onShowMoreButtonClick = this._onShowMoreButtonClick.bind(this);
     }
 
-    componentWillUpdate() {
-      this.setState({filmsOnPage: FILMS_COUNT_ON_START});
-    }
-
     render() {
       const {filmsData} = this.props;
 

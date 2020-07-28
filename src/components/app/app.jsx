@@ -39,13 +39,13 @@ class App extends PureComponent {
           <Main
             promoFilm={promoFilm}
             filmsData={filmsData}
-            onFilmCardClick={onFilmCardClick(filmsData)}
+            onFilmCardClick={onFilmCardClick}
           />
         );
 
       case ScreenMode.DETAILS:
         return (
-          <FilmDetails onFilmCardClick={onFilmCardClick(filmsData)} />
+          <FilmDetails onFilmCardClick={onFilmCardClick} />
         );
     }
     return null;
@@ -68,14 +68,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilmCardClick(filmsData) {
+  onFilmCardClick() {
     return (evt) => {
       evt.preventDefault();
       const clickedFilmId = evt.target.dataset.id;
-      const clickedFilm = filmsData.find((element) => {
-        return element.id.toString() === clickedFilmId;
-      });
-      dispatch(ActionCreator.showDetails(clickedFilm));
+      dispatch(ActionCreator.showDetails(clickedFilmId));
     };
   },
 });

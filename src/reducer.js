@@ -1,9 +1,9 @@
 import {filmsData, promoFilm} from "./mocks/films.js";
-import {Genres, ScreenMode, TabsType, extend} from "./common.js";
+import {ScreenMode, TabsType, extend} from "./common.js";
 
 const ActionType = {
-  FILTER: `filter films`,
-  SHOW_ALL: `return all`,
+  // FILTER: `filter films`,
+  // SHOW_ALL: `return all`,
   SHOW_MAIN: `show main page`,
   SHOW_DETAILS: `show film details page`,
   CHANGE_TAB: `change tab on film details page`,
@@ -11,21 +11,21 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  showAll: () => ({
-    type: ActionType.SHOW_ALL,
-    filter: Genres.All,
-  }),
-  filterByGenre: (filter) => ({
-    type: ActionType.FILTER,
-    filter,
-  }),
+  // showAll: () => ({
+  //   type: ActionType.SHOW_ALL,
+  //   filter: Genres.All,
+  // }),
+  // filterByGenre: (filter) => ({
+  //   type: ActionType.FILTER,
+  //   filter,
+  // }),
   showMain: () => ({
     type: ActionType.SHOW_MAIN,
     showedFilm: null,
   }),
-  showDetails: (film) => ({
+  showDetails: (id) => ({
     type: ActionType.SHOW_DETAILS,
-    showedFilm: film,
+    showedFilmId: id,
   }),
   changeTab: (tab) => ({
     type: ActionType.CHANGE_TAB,
@@ -36,7 +36,7 @@ const ActionCreator = {
 const initialState = {
   promoFilm,
   films: filmsData,
-  filter: Genres.ALL,
+  // filter: Genres.ALL,
   screenMode: ScreenMode.MAIN,
   showedFilm: null,
   currentTab: TabsType.OVERVIEW,
