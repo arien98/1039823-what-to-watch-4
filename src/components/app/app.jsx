@@ -13,7 +13,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {onFilmCardClick, filmsData} = this.props;
+    const {onFilmCardClick} = this.props;
 
     return (
       <BrowserRouter>
@@ -22,7 +22,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-component">
-            <FilmDetails onFilmCardClick={onFilmCardClick(filmsData)} />
+            <FilmDetails onFilmCardClick={onFilmCardClick} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -68,12 +68,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilmCardClick() {
-    return (evt) => {
-      evt.preventDefault();
-      const clickedFilmId = evt.target.dataset.id;
-      dispatch(ActionCreator.showDetails(clickedFilmId));
-    };
+  onFilmCardClick: (evt) => {
+    evt.preventDefault();
+    const clickedFilmId = +evt.target.dataset.id;
+    dispatch(ActionCreator.showDetails(clickedFilmId));
   },
 });
 
