@@ -8,27 +8,29 @@ configure({adapter: new Adapter()});
 
 describe(`main page`, () => {
   const props = {
-    descFilm: {
+    promoFilm: {
       title: `Aviator`,
       poster: `../img/aviator.jpg`,
       genre: `Drama`,
       releaseDate: 2010,
     },
-    filmsTitles: [`Bohemian Rhapsody`, `Macbeth`, `Aviator`],
     filmsData: [{
       id: 2,
       title: `Bohemian Rhapsody`,
       poster: `img/bohemian-rhapsody.jpg`,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
     {
       id: 3,
       title: `Macbeth`,
       poster: `img/macbeth.jpg`,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
     {
       id: 4,
       title: `Aviator`,
       poster: `img/aviator.jpg`,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
     ]
   };

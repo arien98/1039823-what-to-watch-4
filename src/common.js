@@ -28,3 +28,41 @@ export const TabsType = {
   DETAILS: `Details`,
   REVIEWS: `Reviews`,
 };
+
+export const Genres = {
+  ALL: `All genres`,
+  COMEDIES: `Comedies`,
+  CRIMES: `Crime`,
+  DOCUMENTARY: `Documentary`,
+  DRAMAS: `Dramas`,
+  HORROR: `Horror`,
+  KIDS_AND_FAMILY: `Kids & Family`,
+  ROMANCE: `Romance`,
+  SCI_FI: `Sci-Fi`,
+  THRILLERS: `Thrillers`,
+};
+
+export const getGenres = (filmsData) => {
+  return filmsData.map((it) => {
+    const genre = it.genre;
+    switch (genre) {
+      case `Comedy`:
+        return `Comedies`;
+      case `Thriller`:
+        return `Thrillers`;
+      case `Drama`:
+        return `Dramas`;
+      default:
+        return genre;
+    }
+  });
+};
+
+export const ScreenMode = {
+  MAIN: `main page`,
+  DETAILS: `film details`,
+};
+
+export const extend = (state, newState) => {
+  return Object.assign({}, state, newState);
+};

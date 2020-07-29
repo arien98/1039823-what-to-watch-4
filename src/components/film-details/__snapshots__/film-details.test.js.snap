@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`main renders correctly it renders correctly 1`] = `
+exports[`film deatails it renders correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -225,7 +225,7 @@ Array [
             className="movie-card__text"
           >
             <p>
-              A hardened CIA operative finds himself at the mercy of a precocious 9-year-old girl, having been sent undercover to surveil her family.
+              A hardened CIA operative ercy of a precocious 9-year-old girl, having been sent undercover to surveil her family.
             </p>
             <p
               className="movie-card__director"
@@ -240,7 +240,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Heinz Herald, Richard Weil, Anthony Mann, Erich von Stroheim, Charlie Hunnam
+                Heinz Herald, Anthony Mann, Erich von Stroheim, Charlie Hunnam
                 and other
               </strong>
             </p>
@@ -271,16 +271,47 @@ Array [
           >
             <div
               className="small-movie-card__image"
+              data-id={1}
+              onClick={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <img
+                alt="Dardjeeling Limited"
+                className="small-movie-card__pic"
+                height="175"
+                src="img/no-country-for-old-men.jpg"
+                width="280"
+              />
+            </div>
+            <h3
+              className="small-movie-card__title"
+              onClick={[Function]}
+            >
+              <a
+                className="small-movie-card__link"
+                data-id={1}
+                href="movie-page.html"
+              >
+                Dardjeeling Limited
+              </a>
+            </h3>
+          </article>
+          <article
+            className="small-movie-card catalog__movies-card"
+          >
+            <div
+              className="small-movie-card__image"
               data-id={2}
               onClick={[Function]}
               onMouseOut={[Function]}
               onMouseOver={[Function]}
             >
               <img
-                alt="Bohemian Rhapsody"
+                alt="Dardjeeling Limited"
                 className="small-movie-card__pic"
                 height="175"
-                src="img/bohemian-rhapsody.jpg"
+                src="img/no-country-for-old-men.jpg"
                 width="280"
               />
             </div>
@@ -293,7 +324,7 @@ Array [
                 data-id={2}
                 href="movie-page.html"
               >
-                Bohemian Rhapsody
+                Dardjeeling Limited
               </a>
             </h3>
           </article>
@@ -308,10 +339,10 @@ Array [
               onMouseOver={[Function]}
             >
               <img
-                alt="Macbeth"
+                alt="Dardjeeling Limited"
                 className="small-movie-card__pic"
                 height="175"
-                src="img/macbeth.jpg"
+                src="img/no-country-for-old-men.jpg"
                 width="280"
               />
             </div>
@@ -324,38 +355,7 @@ Array [
                 data-id={3}
                 href="movie-page.html"
               >
-                Macbeth
-              </a>
-            </h3>
-          </article>
-          <article
-            className="small-movie-card catalog__movies-card"
-          >
-            <div
-              className="small-movie-card__image"
-              data-id={4}
-              onClick={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <img
-                alt="Aviator"
-                className="small-movie-card__pic"
-                height="175"
-                src="img/aviator.jpg"
-                width="280"
-              />
-            </div>
-            <h3
-              className="small-movie-card__title"
-              onClick={[Function]}
-            >
-              <a
-                className="small-movie-card__link"
-                data-id={4}
-                href="movie-page.html"
-              >
-                Aviator
+                Dardjeeling Limited
               </a>
             </h3>
           </article>

@@ -158,7 +158,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="All genres"
             href="#"
+            onClick={[Function]}
           >
             All genres
           </a>
@@ -168,7 +170,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Comedies"
             href="#"
+            onClick={[Function]}
           >
             Comedies
           </a>
@@ -178,7 +182,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Crime"
             href="#"
+            onClick={[Function]}
           >
             Crime
           </a>
@@ -188,7 +194,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Documentary"
             href="#"
+            onClick={[Function]}
           >
             Documentary
           </a>
@@ -198,7 +206,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Dramas"
             href="#"
+            onClick={[Function]}
           >
             Dramas
           </a>
@@ -208,7 +218,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Horror"
             href="#"
+            onClick={[Function]}
           >
             Horror
           </a>
@@ -218,7 +230,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Kids & Family"
             href="#"
+            onClick={[Function]}
           >
             Kids & Family
           </a>
@@ -228,7 +242,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Romance"
             href="#"
+            onClick={[Function]}
           >
             Romance
           </a>
@@ -238,7 +254,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Sci-Fi"
             href="#"
+            onClick={[Function]}
           >
             Sci-Fi
           </a>
@@ -248,7 +266,9 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            data-filter="Thrillers"
             href="#"
+            onClick={[Function]}
           >
             Thrillers
           </a>
@@ -351,16 +371,7 @@ Array [
           </h3>
         </article>
       </div>
-      <div
-        className="catalog__more"
-      >
-        <button
-          className="catalog__button"
-          type="button"
-        >
-          Show more
-        </button>
-      </div>
+      
     </section>
     <footer
       className="page-footer"

@@ -1,59 +1,37 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {App} from "./app";
-import configureStore from "redux-mock-store";
-import {Provider} from "react-redux";
+import Catalog from "./catalog";
 
-const mockStore = configureStore([]);
-
-describe(`app renders correctly`, () => {
+describe(`catalog renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
       onFilmCardClick: () => {},
-      screenMode: `main page`,
-      promoFilm: {
-        title: `Aviator`,
-        poster: `../img/aviator.jpg`,
-        genre: `Drama`,
-        preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-        releaseDate: 2010,
-      },
+      onFilterClick: () => {},
+      currentFilter: `Dramas`,
+      children: [],
       filmsData: [{
         id: 2,
         title: `Bohemian Rhapsody`,
         poster: `img/bohemian-rhapsody.jpg`,
-        genre: `Dramas`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
       },
       {
         id: 3,
         title: `Macbeth`,
         poster: `img/macbeth.jpg`,
-        genre: `Dramas`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
       },
       {
         id: 4,
         title: `Aviator`,
         poster: `img/aviator.jpg`,
-        genre: `Horror`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
       },
       ],
     };
 
-    const store = mockStore({
-      filter: `All genres`,
-      showedFilm: null,
-      currentTab: `Overview`,
-    });
-
     const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App {...props}/>
-          </Provider>
-      )
+      .create(<Catalog {...props}/>)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

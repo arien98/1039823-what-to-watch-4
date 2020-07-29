@@ -1,11 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
 import Footer from "../footer/footer.jsx";
+import Catalog from "../catalog/catalog.jsx";
+import withButton from "../../hocs/with-show-more-button/with-show-more-button.js";
+import withFilter from "../../hocs/with-filter/with-filter.js";
+
+const SmartCatalog = withFilter(withButton(Catalog));
 
 const Main = (props) => {
-  const {descFilm, filmsData, onFilmCardClick} = props;
-  const {title, poster, genre, releaseDate} = descFilm;
+  const {promoFilm, filmsData, onFilmCardClick} = props;
+  const {title, poster, genre, releaseDate} = promoFilm;
+
   return <>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -63,51 +68,7 @@ const Main = (props) => {
     </section>
 
     <div className="page-content">
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <ul className="catalog__genres-list">
-          <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="#" className="catalog__genres-link">All genres</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Comedies</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Crime</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Documentary</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Dramas</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Horror</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Kids & Family</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Romance</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Sci-Fi</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Thrillers</a>
-          </li>
-        </ul>
-
-        <FilmsList
-          onFilmCardClick={onFilmCardClick}
-          filmsData={filmsData}
-        />
-
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
-      </section>
+      <SmartCatalog filmsData={filmsData} onFilmCardClick={onFilmCardClick}/>
 
       <Footer />
     </div>
@@ -115,7 +76,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  descFilm: PropTypes.object,
+  promoFilm: PropTypes.object,
   filmsData: PropTypes.arrayOf(PropTypes.object),
   onFilmCardClick: PropTypes.func.isRequired,
 };

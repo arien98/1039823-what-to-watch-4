@@ -51,8 +51,15 @@ const POSTERS = [
 ];
 
 const GENRES = [
-  `drama`,
-  `comedy`,
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+  `Dramas`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-Fi`,
+  `Thrillers`,
 ];
 
 const RATING_LEVELS = [
@@ -117,4 +124,6 @@ const generateFilmsData = (filmsNumber) => {
     .map(createFilm);
 };
 
-export const filmsData = generateFilmsData(8);
+export const promoFilm = createFilm();
+
+export const filmsData = generateFilmsData(16);
