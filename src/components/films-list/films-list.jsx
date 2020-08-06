@@ -15,7 +15,7 @@ const FilmsList = (props) => {
   return (
     <div className="catalog__movies-list">
       {filmsTitles.map((element, i) => <FilmCardWithVideo
-        key={element + i}
+        key={Math.random + i}
         title = {element}
         onFilmCardClick={onFilmCardClick}
         filmData={filmsData[i]}

@@ -25,42 +25,6 @@ exports[`catalog renders correctly it renders correctly 1`] = `
       </a>
     </li>
     <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-filter="Comedies"
-        href="#"
-        onClick={[Function]}
-      >
-        Comedies
-      </a>
-    </li>
-    <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-filter="Crime"
-        href="#"
-        onClick={[Function]}
-      >
-        Crime
-      </a>
-    </li>
-    <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-filter="Documentary"
-        href="#"
-        onClick={[Function]}
-      >
-        Documentary
-      </a>
-    </li>
-    <li
       className="catalog__genres-item catalog__genres-item--active"
     >
       <a
@@ -82,54 +46,6 @@ exports[`catalog renders correctly it renders correctly 1`] = `
         onClick={[Function]}
       >
         Horror
-      </a>
-    </li>
-    <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-filter="Kids & Family"
-        href="#"
-        onClick={[Function]}
-      >
-        Kids & Family
-      </a>
-    </li>
-    <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-filter="Romance"
-        href="#"
-        onClick={[Function]}
-      >
-        Romance
-      </a>
-    </li>
-    <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-filter="Sci-Fi"
-        href="#"
-        onClick={[Function]}
-      >
-        Sci-Fi
-      </a>
-    </li>
-    <li
-      className="catalog__genres-item"
-    >
-      <a
-        className="catalog__genres-link"
-        data-filter="Thrillers"
-        href="#"
-        onClick={[Function]}
-      >
-        Thrillers
       </a>
     </li>
   </ul>

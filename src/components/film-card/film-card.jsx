@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const FilmCard = (props) => {
 
   const {onFilmCardClick, filmData, children, isVideoPlaying, onMouseOver, onMouseOut} = props;
-  const {title, id, poster} = filmData;
+  const {title, id, smallPoster} = filmData;
 
   return (
     <article
@@ -19,7 +19,7 @@ const FilmCard = (props) => {
       >
         {isVideoPlaying
           ? children
-          : <img className="small-movie-card__pic" src={poster} alt={title} width="280" height="175" />
+          : <img className="small-movie-card__pic" src={smallPoster} alt={title} width="280" height="175" />
         }
       </div>
       <h3

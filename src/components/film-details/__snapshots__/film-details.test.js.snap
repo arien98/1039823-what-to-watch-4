@@ -147,7 +147,6 @@ Array [
           <img
             alt="Dardjeeling Limited"
             height="327"
-            src="img/no-country-for-old-men.jpg"
             width="218"
           />
         </div>
@@ -212,12 +211,13 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Normal
               </span>
               <span
                 className="movie-rating__count"
               >
                 448
+                 rating
               </span>
             </p>
           </div>
@@ -266,37 +266,6 @@ Array [
         <div
           className="catalog__movies-list"
         >
-          <article
-            className="small-movie-card catalog__movies-card"
-          >
-            <div
-              className="small-movie-card__image"
-              data-id={1}
-              onClick={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <img
-                alt="Dardjeeling Limited"
-                className="small-movie-card__pic"
-                height="175"
-                src="img/no-country-for-old-men.jpg"
-                width="280"
-              />
-            </div>
-            <h3
-              className="small-movie-card__title"
-              onClick={[Function]}
-            >
-              <a
-                className="small-movie-card__link"
-                data-id={1}
-                href="movie-page.html"
-              >
-                Dardjeeling Limited
-              </a>
-            </h3>
-          </article>
           <article
             className="small-movie-card catalog__movies-card"
           >

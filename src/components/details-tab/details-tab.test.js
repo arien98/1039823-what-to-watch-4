@@ -7,7 +7,7 @@ describe(`main renders correctly`, () => {
     const props = {
       starring: [`Anthony Mann`, `Andy Dark`],
       director: `Guy Ritchie`,
-      runtime: `1h 30m`,
+      runtime: 30,
       genre: `Drama`,
       releaseDate: 1980
     };

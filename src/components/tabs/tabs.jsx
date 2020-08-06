@@ -12,7 +12,6 @@ const Tabs = (props) => {
     genre,
     releaseDate,
     ratingScore,
-    ratingLevel,
     ratingCount,
     description,
     director,
@@ -25,7 +24,6 @@ const Tabs = (props) => {
       return <OverviewTab
         ratingScore={ratingScore}
         ratingCount={ratingCount}
-        ratingLevel={ratingLevel}
         description={description}
         director={director}
         starring={starring}

@@ -13,12 +13,18 @@ const withFilter = (Component) => {
     }
 
     render() {
+      const {filmsData} = this.props;
+
+      const genres = filmsData.map((it) => it.genre);
+      const uniqueGenres = [Genres.ALL, ...new Set(genres)];
+
       return (
         <Component
           {...this.props}
           filmsData={this._getFilterdFilms()}
           onFilterClick={this._onFilterClick}
           currentFilter={this.state.filter}
+          genres={uniqueGenres}
         ></Component>
       );
     }

@@ -9,37 +9,24 @@ const withVideo = (Component) => {
       super(props);
 
       this.state = {isVideoPlaying: false};
-      this._onMouseOver = this._onMouseOver.bind(this);
-      this._onMouseOut = this._onMouseOut.bind(this);
     }
 
     render() {
       const {filmData} = this.props;
-      const {smallPoster, preview} = filmData;
+      const {poster, preview} = filmData;
 
       return (
         <Component
           {...this.props}
           isVideoPlaying={this.state.isVideoPlaying}
-          onMouseOver={this._onMouseOver}
-          onMouseOut={this._onMouseOut}
         >
-          <Video preview={preview} poster={smallPoster} />
+          <Video preview={preview} poster={poster} />
         </Component>
       );
-    }
-
-    _onMouseOver() {
-      this.setState({isVideoPlaying: true});
-    }
-
-    _onMouseOut() {
-      this.setState({isVideoPlaying: false});
     }
   }
 
   WithVideo.propTypes = {
-    onFilmCardClick: PropTypes.func.isRequired,
     filmData: PropTypes.object.isRequired,
   };
 

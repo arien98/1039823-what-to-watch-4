@@ -23,57 +23,60 @@ MockComponent.propTypes = {
 const MockComponentWrapped = withButton(MockComponent);
 
 it(`with button renders correctly`, () => {
-  const filmsData = [
-    {
-      id: 2,
-      title: `Bohemian Rhapsody`,
-      poster: `img/bohemian-rhapsody.jpg`,
-    },
-    {
-      id: 3,
-      title: `Macbeth`,
-      poster: `img/macbeth.jpg`,
-    },
-    {
-      id: 4,
-      title: `Aviator`,
-      poster: `img/aviator.jpg`,
-    },
-    {
-      id: 5,
-      title: `Bohemian Rhapsody`,
-      poster: `img/bohemian-rhapsody.jpg`,
-    },
-    {
-      id: 6,
-      title: `Macbeth`,
-      poster: `img/macbeth.jpg`,
-    },
-    {
-      id: 7,
-      title: `Aviator`,
-      poster: `img/aviator.jpg`,
-    },
-    {
-      id: 8,
-      title: `Bohemian Rhapsody`,
-      poster: `img/bohemian-rhapsody.jpg`,
-    },
-    {
-      id: 9,
-      title: `Macbeth`,
-      poster: `img/macbeth.jpg`,
-    },
-    {
-      id: 10,
-      title: `Aviator`,
-      poster: `img/aviator.jpg`,
-    },
-  ];
+  const props = {
+    filmsData: [
+      {
+        id: 2,
+        title: `Bohemian Rhapsody`,
+        smallPoster: `img/bohemian-rhapsody.jpg`,
+      },
+      {
+        id: 3,
+        title: `Macbeth`,
+        smallPoster: `img/macbeth.jpg`,
+      },
+      {
+        id: 4,
+        title: `Aviator`,
+        smallPoster: `img/aviator.jpg`,
+      },
+      {
+        id: 5,
+        title: `Bohemian Rhapsody`,
+        smallPoster: `img/bohemian-rhapsody.jpg`,
+      },
+      {
+        id: 6,
+        title: `Macbeth`,
+        smallPoster: `img/macbeth.jpg`,
+      },
+      {
+        id: 7,
+        title: `Aviator`,
+        smallPoster: `img/aviator.jpg`,
+      },
+      {
+        id: 8,
+        title: `Bohemian Rhapsody`,
+        smallPoster: `img/bohemian-rhapsody.jpg`,
+      },
+      {
+        id: 9,
+        title: `Macbeth`,
+        smallPoster: `img/macbeth.jpg`,
+      },
+      {
+        id: 10,
+        title: `Aviator`,
+        smallPoster: `img/aviator.jpg`,
+      },
+    ],
+    genres: [`All genres`, `Dramas`, `Horror`],
+  };
 
   const tree = renderer.create(
       <MockComponentWrapped
-        filmsData={filmsData}
+        {...props}
       />
   ).toJSON();
 

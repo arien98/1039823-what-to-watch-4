@@ -15,7 +15,7 @@ describe(`film card with video`, () => {
     filmData: {
       title: `Aviator`,
       id: `01`,
-      poster: `img/avatar.jpg`,
+      smallPoster: `img/avatar.jpg`,
       preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
     children: [],

@@ -4,7 +4,9 @@ import Tabs from "../tabs/tabs.jsx";
 import {TabsType} from "../../common.js";
 import MoreFilmsAlike from "../more-films-alike/more-films-alike.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/screen/screen.js";
+import {getCurrentTab, getShowedFilmId} from "../../reducer/screen/selectors.js";
+import {getFilms} from "../../reducer/data/selectors.js";
 
 const FilmDetails = (props) => {
   const {filmId, filmsData, onFilmCardClick, onTabClick, currentTab} = props;
@@ -119,9 +121,8 @@ const FilmDetails = (props) => {
 
       <MoreFilmsAlike
         filmsAlike={filmsData
-          .filter((it) => {
-            return it.genre === filmData.genre;
-          })
+          .filter((it) => it.genre === filmData.genre)
+          .filter((it) => it.id !== filmData.id)
           .slice(0, 4)}
         onFilmCardClick={onFilmCardClick}
       />
@@ -138,9 +139,9 @@ FilmDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentTab: state.currentTab,
-  filmId: state.showedFilmId,
-  filmsData: state.films,
+  currentTab: getCurrentTab(state),
+  filmId: getShowedFilmId(state),
+  filmsData: getFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

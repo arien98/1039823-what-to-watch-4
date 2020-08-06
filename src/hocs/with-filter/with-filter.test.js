@@ -18,20 +18,21 @@ describe(`with filter snapshot`, () => {
         {
           id: 2,
           title: `Bohemian Rhapsody`,
-          poster: `img/bohemian-rhapsody.jpg`,
+          smallPoster: `img/bohemian-rhapsody.jpg`,
         },
         {
           id: 3,
           title: `Macbeth`,
-          poster: `img/macbeth.jpg`,
+          smallPoster: `img/macbeth.jpg`,
         },
         {
           id: 4,
           title: `Aviator`,
-          poster: `img/aviator.jpg`,
+          smallPoster: `img/aviator.jpg`,
         },
       ],
       onFilmCardClick: () => {},
+      genres: [`All genres`, `Dramas`, `Horror`],
     };
 
     const tree = renderer

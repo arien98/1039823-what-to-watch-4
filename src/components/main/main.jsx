@@ -9,12 +9,12 @@ const SmartCatalog = withFilter(withButton(Catalog));
 
 const Main = (props) => {
   const {promoFilm, filmsData, onFilmCardClick} = props;
-  const {title, poster, genre, releaseDate} = promoFilm;
+  const {title, poster, bigPoster, genre, releaseDate, bgColor} = promoFilm;
 
   return <>
     <section className="movie-card">
-      <div className="movie-card__bg">
-        <img src={poster} alt={title} />
+      <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
+        <img src={bigPoster} alt={title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>

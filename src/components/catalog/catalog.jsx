@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
-import {Genres} from "../../common.js";
 
 const Catalog = (props) => {
-  const {filmsData, onFilmCardClick, onFilterClick, currentFilter, children} = props;
+  const {filmsData, onFilmCardClick, onFilterClick, currentFilter, children, genres} = props;
 
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
       <ul className="catalog__genres-list">
-        {Object.values(Genres).map((element, i) => {
+        {genres.map((element, i) => {
           const className = element === currentFilter ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`;
           return (
             <li key={Math.random() + i} className={className}>
@@ -25,14 +24,10 @@ const Catalog = (props) => {
         })}
       </ul>
 
-      {filmsData
-        ?
-        <FilmsList
-          onFilmCardClick={onFilmCardClick}
-          filmsData={filmsData}
-        />
-        : ``
-      }
+      <FilmsList
+        onFilmCardClick={onFilmCardClick}
+        filmsData={filmsData}
+      />
 
       {children}
 
@@ -42,6 +37,7 @@ const Catalog = (props) => {
 
 Catalog.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string),
   onFilmCardClick: PropTypes.func.isRequired,
   onFilterClick: PropTypes.func.isRequired,
   currentFilter: PropTypes.string.isRequired,

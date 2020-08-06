@@ -5,6 +5,7 @@ const DetailsTab = (props) => {
   const {starring, director, runtime, genre, releaseDate} = props;
 
   const starringText = starring.join(`, \n`);
+  const runtimeMarkup = `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
 
   return (
     <div className="movie-card__text movie-card__row">
@@ -24,7 +25,7 @@ const DetailsTab = (props) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{runtime}</span>
+          <span className="movie-card__details-value">{runtimeMarkup}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
@@ -42,7 +43,7 @@ const DetailsTab = (props) => {
 DetailsTab.propTypes = {
   starring: PropTypes.arrayOf(PropTypes.string),
   director: PropTypes.string,
-  runtime: PropTypes.string,
+  runtime: PropTypes.number,
   genre: PropTypes.string,
   releaseDate: PropTypes.number,
 };

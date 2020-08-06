@@ -14,7 +14,6 @@ exports[`main renders correctly it renders correctly 1`] = `
       alt="Aviator"
       className="small-movie-card__pic"
       height="175"
-      src="img/avatar.jpg"
       width="280"
     />
   </div>

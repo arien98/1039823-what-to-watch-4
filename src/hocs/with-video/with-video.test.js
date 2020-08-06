@@ -25,7 +25,7 @@ const MockComponentWrapped = withVideo(MockComponent);
 it(`with button renders correctly`, () => {
   const filmData = {
     title: `Aviator`,
-    poster: `../img/aviator.jpg`,
+    smallPoster: `../img/aviator.jpg`,
     genre: `Drama`,
     releaseDate: 2010,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
