@@ -20,10 +20,6 @@ const store = createStore(
         applyMiddleware(thunk.withExtraArgument(api)))
 );
 
-store.dispatch(DataOperation.loadFilms());
-store.dispatch(DataOperation.loadPromo());
-store.dispatch(UserOperation.checkAuth());
-
 const init = () => {
   ReactDOM.render(
       <Provider store={store}>
@@ -33,4 +29,6 @@ const init = () => {
   );
 };
 
-init();
+store.dispatch(DataOperation.loadFilms());
+store.dispatch(DataOperation.loadPromo()).then(init);
+store.dispatch(UserOperation.checkAuth());

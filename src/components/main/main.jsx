@@ -4,11 +4,12 @@ import Footer from "../footer/footer.jsx";
 import Catalog from "../catalog/catalog.jsx";
 import withButton from "../../hocs/with-show-more-button/with-show-more-button.js";
 import withFilter from "../../hocs/with-filter/with-filter.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const SmartCatalog = withFilter(withButton(Catalog));
 
 const Main = (props) => {
-  const {promoFilm, filmsData, onFilmCardClick} = props;
+  const {promoFilm, filmsData, onFilmCardClick, authorizationStatus, login} = props;
   const {title, poster, bigPoster, genre, releaseDate, bgColor} = promoFilm;
 
   return <>
@@ -29,9 +30,17 @@ const Main = (props) => {
         </div>
 
         <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
+
+          {
+            authorizationStatus === AuthorizationStatus.AUTH
+              ? <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div>
+              : <div className="user-block">
+                <a href="sign-in.html" className="user-block__link" onClick={login}>Sign in</a>
+              </div>
+          }
+
         </div>
       </header>
 
@@ -79,6 +88,8 @@ Main.propTypes = {
   promoFilm: PropTypes.object,
   filmsData: PropTypes.arrayOf(PropTypes.object),
   onFilmCardClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -30,7 +30,9 @@ describe(`main renders correctly`, () => {
         smallPoster: `img/aviator.jpg`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
       },
-      ]
+      ],
+      login: () => {},
+      authorizationStatus: `AUTH`,
     };
 
     const tree = renderer

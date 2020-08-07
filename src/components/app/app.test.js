@@ -42,6 +42,7 @@ describe(`app renders correctly`, () => {
       },
       ],
       login: () => {},
+      authorizationStatus: `AUTH`,
     };
 
     const store = mockStore({

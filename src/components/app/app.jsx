@@ -7,8 +7,8 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {ScreenMode} from "../../common.js";
 import {getFilms, getPromoFilm} from "../../reducer/data/selectors.js";
-// import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {getScreenMode} from "../../reducer/screen/selectors.js";
 
 class App extends PureComponent {
@@ -35,7 +35,7 @@ class App extends PureComponent {
 
   _renderApp() {
     const {
-      // authorizationStatus,
+      authorizationStatus,
       // login,
       filmsData,
       screenMode,
@@ -51,6 +51,7 @@ class App extends PureComponent {
             promoFilm={promoFilm}
             filmsData={filmsData}
             onFilmCardClick={onFilmCardClick}
+            authorizationStatus={authorizationStatus}
           />
         );
 
@@ -77,6 +78,7 @@ const mapStateToProps = (state) => ({
   screenMode: getScreenMode(state),
   filmsData: getFilms(state),
   promoFilm: getPromoFilm(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
