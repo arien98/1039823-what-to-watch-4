@@ -11,15 +11,13 @@ export const createAPI = (onUnauthorized) => {
     withCredentials: true,
   });
 
-  const onSuccess = (responce) => {
-    return responce;
+  const onSuccess = (response) => {
+    return response;
   };
 
   const onError = (error) => {
-    const {responce} = error;
-    console.log(error);
-
-    if (responce.status === Error.UNAUTHORIZED) {
+    const {response} = error;
+    if (response.status === Error.UNAUTHORIZED) {
       onUnauthorized();
 
       throw error;

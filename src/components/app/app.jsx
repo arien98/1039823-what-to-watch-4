@@ -1,15 +1,17 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route, Redirect} from "react-router-dom";
 import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {ScreenMode} from "../../common.js";
+import {ScreenMode, AppRoute} from "../../common.js";
 import {getFilms, getPromoFilm} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {getScreenMode} from "../../reducer/screen/selectors.js";
+import {history} from "../../history.js";
+import SignIn from "../sign-in/sign-in.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -17,19 +19,44 @@ class App extends PureComponent {
   }
 
   render() {
-    const {onFilmCardClick} = this.props;
+    const {
+      authorizationStatus,
+      login,
+      filmsData,
+      onFilmCardClick,
+      promoFilm,
+    } = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-component">
-            <FilmDetails onFilmCardClick={onFilmCardClick} />
-          </Route>
+
+          <Route exact path={AppRoute.ROOT}
+            render={() => {
+              return <Main
+                promoFilm={promoFilm}
+                filmsData={filmsData}
+                onFilmCardClick={onFilmCardClick}
+                authorizationStatus={authorizationStatus}
+              />;
+            }}
+          />
+
+          <Route exact path={AppRoute.LOGIN}
+            render={() => {
+
+              return authorizationStatus !== AuthorizationStatus.AUTH
+                ? <SignIn
+                  onSubmit={login}
+                />
+                : <Redirect
+                  to={AppRoute.ROOT}
+                />;
+            }}
+          />
+
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 

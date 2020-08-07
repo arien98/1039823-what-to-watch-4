@@ -48,6 +48,15 @@ const Operation = {
         throw err;
       });
   },
+
+  changeFavoriteState: (film) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${film.id}/${film.isFavorite ? 0 : 1}`)
+    .then(() => {
+
+      dispatch(Operation.loadFilms());
+      dispatch(Operation.loadPromo());
+    });
+  },
 };
 
 const reducer = (state = initialState, action) => {

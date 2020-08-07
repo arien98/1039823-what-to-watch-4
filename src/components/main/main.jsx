@@ -4,45 +4,23 @@ import Footer from "../footer/footer.jsx";
 import Catalog from "../catalog/catalog.jsx";
 import withButton from "../../hocs/with-show-more-button/with-show-more-button.js";
 import withFilter from "../../hocs/with-filter/with-filter.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import Header from "../header/header.jsx";
 
 const SmartCatalog = withFilter(withButton(Catalog));
 
 const Main = (props) => {
-  const {promoFilm, filmsData, onFilmCardClick, authorizationStatus, login} = props;
+  const {promoFilm, filmsData, onFilmCardClick, authorizationStatus} = props;
   const {title, poster, bigPoster, genre, releaseDate, bgColor} = promoFilm;
 
   return <>
-    <section className="movie-card">
-      <div className="movie-card__bg" style={{backgroundColor: bgColor}}>
+    <section className="movie-card" style={{backgroundColor: bgColor}}>
+      <div className="movie-card__bg">
         <img src={bigPoster} alt={title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className="page-header movie-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="user-block">
-
-          {
-            authorizationStatus === AuthorizationStatus.AUTH
-              ? <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-              : <div className="user-block">
-                <a href="sign-in.html" className="user-block__link" onClick={login}>Sign in</a>
-              </div>
-          }
-
-        </div>
-      </header>
+      <Header authorizationStatus={authorizationStatus} />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -89,7 +67,6 @@ Main.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.object),
   onFilmCardClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -7,9 +7,20 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentTab, getShowedFilmId} from "../../reducer/screen/selectors.js";
 import {getFilms} from "../../reducer/data/selectors.js";
+import {Operation} from "../../reducer/data/data.js";
+import Header from "../header/header.jsx";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 
 const FilmDetails = (props) => {
-  const {filmId, filmsData, onFilmCardClick, onTabClick, currentTab} = props;
+  const {
+    filmId,
+    filmsData,
+    onFilmCardClick,
+    onTabClick,
+    currentTab,
+    onFavoriteButtonClick,
+    authorizationStatus
+  } = props;
 
   const filmData = filmsData.find((element) => {
     return element.id.toString() === filmId.toString();
@@ -21,11 +32,13 @@ const FilmDetails = (props) => {
     releaseDate,
     poster,
     bigPoster,
+    isFavorite,
+    bgColor,
   } = filmData;
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{backgroundColor: bgColor}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={bigPoster} alt={title} />
@@ -33,21 +46,7 @@ const FilmDetails = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
+          <Header authorizationStatus={authorizationStatus} />
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -64,10 +63,16 @@ const FilmDetails = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                <button className="btn btn--list movie-card__button" type="button" onClick={onFavoriteButtonClick(filmData)}>
+                  {
+                    isFavorite
+                      ? <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      : <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                  }
                   <span>My list</span>
                 </button>
                 <a href="add-review.html" className="btn movie-card__button">Add review</a>
@@ -136,19 +141,26 @@ FilmDetails.propTypes = {
   onFilmCardClick: PropTypes.func.isRequired,
   onTabClick: PropTypes.func.isRequired,
   currentTab: PropTypes.string.isRequired,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentTab: getCurrentTab(state),
   filmId: getShowedFilmId(state),
   filmsData: getFilms(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onTabClick(evt) {
+  onTabClick: (evt) => {
     evt.preventDefault();
     const tab = evt.target.dataset.tab;
     dispatch(ActionCreator.changeTab(tab));
+  },
+
+  onFavoriteButtonClick: (film) => () => {
+    dispatch(Operation.changeFavoriteState(film));
   },
 });
 

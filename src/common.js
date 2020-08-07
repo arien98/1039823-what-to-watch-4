@@ -66,3 +66,11 @@ export const ScreenMode = {
 export const extend = (state, newState) => {
   return Object.assign({}, state, newState);
 };
+
+export const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE: `/films`,
+  PLAYER: `/player`,
+};
