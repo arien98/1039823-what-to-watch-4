@@ -16,5 +16,13 @@ export const getCurrentTab = (state) => {
 };
 
 export const getIsFormDisabled = (state) => {
-  return state[NameSpace].isFormDisabled;
+  return state[NAME_SPACE].isFormDisabled;
+};
+
+export const getIsMovieVideoplayerActive = (state) => {
+  return state[NAME_SPACE].isMovieVideoplayerActive;
+};
+
+export const getIsReviewOpen = (state) => {
+  return state[NAME_SPACE].isReviewOpen;
 };

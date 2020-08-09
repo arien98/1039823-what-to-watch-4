@@ -7,10 +7,12 @@ import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/s
 import {connect} from "react-redux";
 
 const Header = (props) => {
-  const {authorizationStatus, authorizationInfo} = props;
+  const {authorizationStatus, authorizationInfo, children} = props;
+
+  const headerClass = children ? `page-header user-page__head` : `page-header movie-card__head`;
 
   return (
-    <header className="page-header movie-card__head">
+    <header className={headerClass}>
       <div className="logo">
         <Link to={AppRoute.ROOT} className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
@@ -18,6 +20,8 @@ const Header = (props) => {
           <span className="logo__letter logo__letter--3">W</span>
         </Link>
       </div>
+
+      {children}
 
       <div className="user-block">
 
@@ -47,6 +51,7 @@ Header.propTypes = {
     avatar: PropTypes.string.isRequired,
   }),
   authorizationStatus: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };
 
 const mapStateToProps = (state) => ({

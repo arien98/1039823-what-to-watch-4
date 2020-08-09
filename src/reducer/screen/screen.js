@@ -5,6 +5,8 @@ const ActionType = {
   SHOW_DETAILS: `show film details page`,
   CHANGE_TAB: `change tab on film details page`,
   TOGGLE_FORM_STATE: `TOGGLE_FORM_STATE`,
+  ACTIVATE_MOVIE_VIDEOPLAYER: `ACTIVATE_MOVIE_VIDEOPLAYER`,
+  ADD_REVIEW: `ADD_REVIEW`,
 };
 
 const ActionCreator = {
@@ -27,6 +29,16 @@ const ActionCreator = {
     type: ActionType.TOGGLE_FORM_STATE,
     payload: bool,
   }),
+
+  activateMovieVideoplayer: (state) => ({
+    type: ActionType.ACTIVATE_MOVIE_VIDEOPLAYER,
+    payload: state,
+  }),
+
+  addReview: (bool) => ({
+    type: ActionType.ADD_REVIEW,
+    payload: bool,
+  }),
 };
 
 const initialState = {
@@ -34,6 +46,8 @@ const initialState = {
   showedFilmId: null,
   currentTab: TabsType.OVERVIEW,
   isFormDisabled: false,
+  isMovieVideoplayerActive: false,
+  isReviewOpen: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,11 +62,20 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_TAB:
       return extend(state, {currentTab: action.tab});
 
-    case (ActionType.TOGGLE_FORM_STATE):
+    case ActionType.TOGGLE_FORM_STATE:
       return extend(state, {
         isFormDisabled: action.payload,
       });
 
+    case ActionType.ACTIVATE_MOVIE_VIDEOPLAYER:
+      return extend(state, {
+        isMovieVideoplayerActive: action.payload,
+      });
+
+    case (ActionType.ADD_REVIEW):
+      return extend(state, {
+        isReviewOpen: action.payload,
+      });
   }
   return state;
 };

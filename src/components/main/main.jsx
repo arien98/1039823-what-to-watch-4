@@ -5,12 +5,14 @@ import Catalog from "../catalog/catalog.jsx";
 import withButton from "../../hocs/with-show-more-button/with-show-more-button.js";
 import withFilter from "../../hocs/with-filter/with-filter.js";
 import Header from "../header/header.jsx";
+import {history} from "../../history.js";
+import {AppRoute} from "../../common.js";
 
 const SmartCatalog = withFilter(withButton(Catalog));
 
 const Main = (props) => {
-  const {promoFilm, filmsData, onFilmCardClick, authorizationStatus} = props;
-  const {title, poster, bigPoster, genre, releaseDate, bgColor} = promoFilm;
+  const {promoFilm, filmsData, onFilmCardClick, authorizationStatus, authorizationInfo, onPlayButtonClick, onFavoriteButtonClick} = props;
+  const {title, poster, bigPoster, genre, releaseDate, bgColor, isFavorite} = promoFilm;
 
   return <>
     <section className="movie-card" style={{backgroundColor: bgColor}}>
@@ -20,7 +22,10 @@ const Main = (props) => {
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <Header authorizationStatus={authorizationStatus} />
+      <Header
+        authorizationStatus={authorizationStatus}
+        authorizationInfo={authorizationInfo}
+      />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -36,16 +41,33 @@ const Main = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <button
+                className="btn btn--play movie-card__button"
+                type="button"
+                onClick={() => {
+                  onPlayButtonClick();
+                  history.push(`${AppRoute.PLAYER}/promo`);
+                }}
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use href="#play-s"></use>
+                  <use xlinkHref="#play-s" />
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use href="#add"></use>
-                </svg>
+              <button
+                className="btn btn--list movie-card__button"
+                type="button"
+                onClick={onFavoriteButtonClick(promoFilm)}
+              >
+                {
+                  isFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"></use>
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                }
                 <span>My list</span>
               </button>
             </div>
@@ -67,6 +89,9 @@ Main.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.object),
   onFilmCardClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  authorizationInfo: PropTypes.object.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
 };
 
 export default Main;

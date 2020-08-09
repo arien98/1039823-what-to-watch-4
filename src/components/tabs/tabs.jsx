@@ -16,7 +16,7 @@ const Tabs = (props) => {
     description,
     director,
     starring,
-    runtime
+    runtime,
   } = filmData;
 
   switch (currentTab) {
@@ -47,6 +47,7 @@ const Tabs = (props) => {
 Tabs.propTypes = {
   currentTab: PropTypes.string,
   filmData: PropTypes.object,
+  loadReviews: PropTypes.func.isRequired,
 };
 
 export default Tabs;
