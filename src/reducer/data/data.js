@@ -9,6 +9,7 @@ const initialState = {
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
+  CATCH_ERROR: `CATCH_ERROR`,
 };
 
 const ActionCreator = {
@@ -18,12 +19,21 @@ const ActionCreator = {
       payload: films,
     };
   },
+
   loadPromo: (promoFilm) => {
     return {
       type: ActionType.LOAD_PROMO,
       payload: promoFilm,
     };
   },
+
+  catchError: () => {
+    return {
+      type: ActionType.CATCH_ERROR,
+      payload: true,
+    };
+  },
+
 };
 
 const Operation = {
@@ -33,8 +43,8 @@ const Operation = {
         const adaptedData = getAdaptedFilmsData(response.data);
         dispatch(ActionCreator.loadFilms(adaptedData));
       })
-      .catch((err) => {
-        throw err;
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
       });
   },
 
@@ -44,18 +54,20 @@ const Operation = {
         const adaptedData = getAdaptedFilmData(response.data);
         dispatch(ActionCreator.loadPromo(adaptedData));
       })
-      .catch((err) => {
-        throw err;
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
       });
   },
 
   changeFavoriteState: (film) => (dispatch, getState, api) => {
     return api.post(`/favorite/${film.id}/${film.isFavorite ? 0 : 1}`)
     .then(() => {
-
       dispatch(Operation.loadFilms());
       dispatch(Operation.loadPromo());
-    });
+    })
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
+      });
   },
 };
 
@@ -69,6 +81,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO:
       return extend(state, {
         promoFilm: action.payload,
+      });
+
+    case ActionType.CATCH_ERROR:
+      return extend(state, {
+        isError: action.payload,
       });
   }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
-import {TabsType} from "../../common.js";
+import {TabsType, AppRoute} from "../../common.js";
 import MoreFilmsAlike from "../more-films-alike/more-films-alike.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
@@ -10,6 +10,7 @@ import {getFilms} from "../../reducer/data/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
 import Header from "../header/header.jsx";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {Link} from "react-router-dom";
 
 const FilmDetails = (props) => {
   const {
@@ -34,6 +35,7 @@ const FilmDetails = (props) => {
     bigPoster,
     isFavorite,
     bgColor,
+    id,
   } = filmData;
 
   return (
@@ -75,7 +77,10 @@ const FilmDetails = (props) => {
                   }
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link
+                  to={`${AppRoute.MOVIE}/${id}/review`}
+                  className="btn movie-card__button"
+                >Add review</Link>
               </div>
             </div>
           </div>

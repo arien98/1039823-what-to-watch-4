@@ -5,13 +5,19 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {ScreenMode, AppRoute} from "../../common.js";
+import {AppRoute} from "../../common.js";
 import {getFilms, getPromoFilm} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
-import {getScreenMode} from "../../reducer/screen/selectors.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {getScreenMode, getShowedFilmId} from "../../reducer/screen/selectors.js";
 import {history} from "../../history.js";
 import SignIn from "../sign-in/sign-in.jsx";
+import {PrivateRoute} from "../private-root/private-root.jsx";
+import withReview from "../../hocs/with-review/with-review.js";
+import AddReview from "../add-review/add-review.jsx";
+
+const ReviewWrapper = withReview(AddReview);
 
 class App extends PureComponent {
   constructor(props) {
@@ -22,9 +28,11 @@ class App extends PureComponent {
     const {
       authorizationStatus,
       login,
+      filmId,
       filmsData,
       onFilmCardClick,
       promoFilm,
+      onReviewSubmit
     } = this.props;
 
     return (
@@ -55,39 +63,26 @@ class App extends PureComponent {
             }}
           />
 
+          <Route exact path={`${AppRoute.MOVIE}/:id`}
+            render={() => {
+              return <FilmDetails onFilmCardClick={onFilmCardClick} />;
+            }}
+          />
+
+          <PrivateRoute exact
+            path={`${AppRoute.MOVIE}/:id/review`}
+            authorizationStatus={authorizationStatus}
+            render={() => {
+              return <ReviewWrapper
+                filmId={filmId}
+                onReviewSubmit={onReviewSubmit}
+              />;
+            }}
+          />
+
         </Switch>
       </Router>
     );
-  }
-
-  _renderApp() {
-    const {
-      authorizationStatus,
-      // login,
-      filmsData,
-      screenMode,
-      onFilmCardClick,
-      promoFilm
-    } = this.props;
-
-    switch (screenMode) {
-      case ScreenMode.MAIN:
-
-        return (
-          <Main
-            promoFilm={promoFilm}
-            filmsData={filmsData}
-            onFilmCardClick={onFilmCardClick}
-            authorizationStatus={authorizationStatus}
-          />
-        );
-
-      case ScreenMode.DETAILS:
-        return (
-          <FilmDetails onFilmCardClick={onFilmCardClick} />
-        );
-    }
-    return null;
   }
 }
 
@@ -99,9 +94,12 @@ App.propTypes = {
   filmsData: PropTypes.array,
   screenMode: PropTypes.string.isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
+  onReviewSubmit: PropTypes.func.isRequired,
+  filmId: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
+  filmId: getShowedFilmId(state),
   screenMode: getScreenMode(state),
   filmsData: getFilms(state),
   promoFilm: getPromoFilm(state),
@@ -117,6 +115,11 @@ const mapDispatchToProps = (dispatch) => ({
     evt.preventDefault();
     const clickedFilmId = +evt.target.dataset.id;
     dispatch(ActionCreator.showDetails(clickedFilmId));
+    history.push(`${AppRoute.MOVIE}/${clickedFilmId}`);
+  },
+
+  onReviewSubmit(filmId, review) {
+    dispatch(DataOperation.postReview(filmId, review));
   },
 });
 

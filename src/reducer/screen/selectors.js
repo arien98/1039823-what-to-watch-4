@@ -14,3 +14,7 @@ export const getShowedFilmId = (state) => {
 export const getCurrentTab = (state) => {
   return state[NAME_SPACE].currentTab;
 };
+
+export const getIsFormDisabled = (state) => {
+  return state[NameSpace].isFormDisabled;
+};

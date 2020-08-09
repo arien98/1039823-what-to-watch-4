@@ -1,4 +1,5 @@
 import {extend} from "../../common.js";
+import createUserInfo from "../../adapter/user.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -41,7 +42,7 @@ const Operation = {
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.loadAuthorizationInfo(response.data));
+        dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
       })
       .catch((err) => {
         throw err;

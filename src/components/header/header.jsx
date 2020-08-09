@@ -3,34 +3,35 @@ import PropTypes from "prop-types";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../common.js";
+import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
+import {connect} from "react-redux";
 
 const Header = (props) => {
-  const {authorizationStatus, children} = props;
+  const {authorizationStatus, authorizationInfo} = props;
 
   return (
     <header className="page-header movie-card__head">
       <div className="logo">
-        <a className="logo__link">
+        <Link to={AppRoute.ROOT} className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
-        </a>
+        </Link>
       </div>
-
-      {children}
 
       <div className="user-block">
 
-        {
-          authorizationStatus === AuthorizationStatus.AUTH
-            ? <div className="user-block__avatar">
-              <Link to={AppRoute.MY_LIST}>
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </Link>
+        {authorizationStatus === AuthorizationStatus.AUTH
+          ? <Link to={AppRoute.MY_LIST}>
+            <div className="user-block__avatar">
+              <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
             </div>
-            : <div className="user-block">
-              <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
-            </div>
+          </Link>
+          : <Link
+            to={AppRoute.LOGIN}
+            className="user-block__link">
+          Sign in
+          </Link>
         }
 
       </div>
@@ -39,8 +40,19 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
+  authorizationInfo: PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+  }),
   authorizationStatus: PropTypes.string.isRequired,
-  children: PropTypes.node,
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  authorizationInfo: getAuthorizationInfo(state),
+});
+
+export {Header};
+export default connect(mapStateToProps)(Header);
