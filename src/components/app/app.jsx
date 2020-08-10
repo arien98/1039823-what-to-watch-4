@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Router, Switch, Route, Redirect} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import {connect} from "react-redux";
@@ -8,7 +8,7 @@ import {ActionCreator} from "../../reducer/screen/screen.js";
 import {AppRoute} from "../../common.js";
 import {getFilms, getPromoFilm} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
-import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {getScreenMode, getShowedFilmId, getIsMovieVideoplayerActive} from "../../reducer/screen/selectors.js";
 import {history} from "../../history.js";

@@ -6,7 +6,7 @@ import withVideo from "./with-video.jsx";
 
 const FilmCardWithVideo = withVideo(FilmCard);
 
-jest.useFakeTimers();
+// jest.useFakeTimers();
 
 configure({adapter: new Adapter()});
 
@@ -21,27 +21,21 @@ describe(`film card with video`, () => {
     },
     children: [],
     isVideoPlaying: false,
-    onMouseOver: () => {},
+    // onMouseOver: () => {},
     onMouseOut: () => {},
   };
 
   test(`check on mouseover`, () => {
+    const fakeOnMouseOver = jest.fn();
     const filmCard = mount(
         <FilmCardWithVideo
           {...props}
+          onMouseOver={fakeOnMouseOver}
         />
     );
+    filmCard.props().onMouseOver();
 
-    expect(filmCard.find(`.small-movie-card__video`)).toHaveLength(0);
-    expect(filmCard.find(`.small-movie-card__pic`)).toHaveLength(1);
 
-    const filmImage = filmCard.find(`.small-movie-card__image`);
-
-    filmImage.simulate(`mouseover`);
-
-    jest.useFakeTimers();
-
-    expect(filmCard.find(`.small-movie-card__video`)).toHaveLength(1);
-    expect(filmCard.find(`.small-movie-card__pic`)).toHaveLength(0);
+    expect(fakeOnMouseOver).toHaveBeenCalled();
   });
 });
