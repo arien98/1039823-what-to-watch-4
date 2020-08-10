@@ -53,6 +53,7 @@ const props = {
   },
   onPlayButtonClick: () => {},
   onFavoriteButtonClick: () => {},
+  isError: false,
 };
 
 it(`Main page should render correctly`, () => {

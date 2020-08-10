@@ -67,23 +67,8 @@ export const getTimeElapsed = (duration) => {
   ].join(`:`);
 };
 
-export const validateEmail = (evt) => {
-  const inputEmail = evt.target.value;
-  const pattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
-
-  if (inputEmail === ``) {
-    evt.target.setCustomValidity(`Email is required`);
-    evt.target.style.borderColor = `#a8421e`;
-    return;
-  }
-
-  if (!pattern.test(inputEmail)) {
-    evt.target.setCustomValidity(`Email must be in the format email@mail.com`);
-    evt.target.style.borderColor = `#a8421e`;
-    return;
-  }
-
-  evt.target.style.borderColor = `#`;
+export const isLoginValid = (input, evt) => {
+  return input.current.validity.valid && evt.target.value.length >= 6;
 };
 
 export const validatePassword = (evt) => {

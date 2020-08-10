@@ -39,7 +39,7 @@ const ActionCreator = {
   catchError: (error) => {
     return {
       type: ActionType.CATCH_ERROR,
-      error,
+      payload: error.response.status,
     };
   },
 
@@ -154,7 +154,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.CATCH_ERROR:
       return extend(state, {
         isError: true,
-        errorType: action.error.response,
+        errorType: action.payload,
       });
 
     case ActionType.LOAD_FAVORITE_FILMS:

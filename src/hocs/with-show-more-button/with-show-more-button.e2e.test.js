@@ -79,6 +79,13 @@ describe(`catalog with filter`, () => {
         genre: `Horror`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
       },
+      {
+        id: 10,
+        title: `Aviator`,
+        smallPoster: `img/aviator.jpg`,
+        genre: `Horror`,
+        preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      },
     ],
     genres: [`All genres`, `Dramas`, `Horror`],
     filter: `All genres`,
@@ -103,6 +110,6 @@ describe(`catalog with filter`, () => {
 
     const filmCards = catalog.find(`.catalog__movies-card`);
 
-    expect(filmCards.length).toEqual(9);
+    expect(filmCards.length).toEqual(8);
   });
 });

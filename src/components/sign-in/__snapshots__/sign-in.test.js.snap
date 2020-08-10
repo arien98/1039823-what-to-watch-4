@@ -43,7 +43,7 @@ Array [
       className="sign-in user-page__content"
     >
       <form
-        action=""
+        action="#"
         className="sign-in__form"
         onSubmit={[Function]}
       >
@@ -57,7 +57,9 @@ Array [
               className="sign-in__input"
               id="user-email"
               name="user-email"
+              onChange={[Function]}
               placeholder="Email address"
+              required={true}
               type="email"
             />
             <label
@@ -74,7 +76,9 @@ Array [
               className="sign-in__input"
               id="user-password"
               name="user-password"
+              onChange={[Function]}
               placeholder="Password"
+              required={true}
               type="password"
             />
             <label

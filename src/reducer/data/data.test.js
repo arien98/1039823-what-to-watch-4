@@ -73,9 +73,10 @@ it(`Reducer should update PromoMovie by load`, () => {
     isError: false,
   }, {
     type: ActionType.CATCH_ERROR,
-    payload: true,
+    payload: `Bad authorizing`,
   })).toEqual({
     isError: true,
+    errorType: `Bad authorizing`,
   });
 });
 

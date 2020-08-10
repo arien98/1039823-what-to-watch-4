@@ -11,11 +11,12 @@ const withVideo = (Component) => {
       super(props);
 
       this.state = {isVideoPlaying: false};
+      this._videoTimer = null;
       this._handleMouseOver = this._handleMouseOver.bind(this);
       this._handleMouseOut = this._handleMouseOut.bind(this);
     }
 
-    componentWillUnmount() {
+    componentDidUpdate() {
       clearTimeout(this._videoTimer);
     }
 
@@ -28,7 +29,7 @@ const withVideo = (Component) => {
           {...this.props}
           isVideoPlaying={this.state.isVideoPlaying}
           onMouseOver={this._handleMouseOver}
-          onMouseOut={this._handleMouseOver}
+          onMouseOut={this._handleMouseOut}
         >
           <Video preview={preview} poster={smallPoster} />
         </Component>
@@ -36,16 +37,12 @@ const withVideo = (Component) => {
     }
 
     _handleMouseOver() {
-      this._videoTimer();
+      this._videoTimer = setTimeout(() => this.setState({isVideoPlaying: true}), VIDEO_TIMEOUT);
     }
 
     _handleMouseOut() {
-      this.setState({isVideoPlaying: false});
       clearTimeout(this._videoTimer);
-    }
-
-    _videoTimer() {
-      setTimeout(() => this.setState({isVideoPlaying: true}), VIDEO_TIMEOUT);
+      this.setState({isVideoPlaying: false});
     }
   }
 

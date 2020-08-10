@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import withFullScreenVideoplayer from "./with-full-screen-videoplayer";
+import withVideo from "../with-video/with-video.jsx";
 
 const MockComponent = () => {
   return (
@@ -9,26 +9,33 @@ const MockComponent = () => {
   );
 };
 
-const MockComponentWrapped = withFullScreenVideoplayer(MockComponent);
+const MockComponentWrapped = withVideo(MockComponent);
 
 describe(`with full screen videoplayer snapshot`, () => {
   test(`it renders correctly`, () => {
-    const props = {
-      activeMovie:
-        {
-          id: 2,
-          title: `Bohemian Rhapsody`,
-          poster: `img/bohemian-rhapsody.jpg`,
-          video: ``,
-        },
-      onExitButtonClick: () => {},
+    const filmData = {
+      title: `Aviator`,
+      smallPoster: `../img/aviator.jpg`,
+      genre: `Drama`,
+      releaseDate: 2010,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     };
 
     const tree = renderer
     .create(
-        <MockComponentWrapped {...props}/>, {
-          createNodeMock: () => {
-            return {};
+        <MockComponentWrapped
+          filmData={filmData}
+          onFilmCardClick={() => {}}
+        />, {
+          createNodeMock: (element) => {
+            if (element.type === `video`) {
+              return {
+                play: () => {},
+                src: `ddd`,
+                poster: `fff`,
+              };
+            }
+            return null;
           }
         }
     )

@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import Footer from "../footer/footer.jsx";
 import {Link} from "react-router-dom";
-import {AppRoute, validateEmail, validatePassword} from "../../common.js";
+import {AppRoute, isLoginValid, validatePassword} from "../../common.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -46,7 +46,7 @@ class SignIn extends PureComponent {
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
-                  id="user-email" ref={this.loginRef} onChange={validateEmail} required/>
+                  id="user-email" ref={this.loginRef} onChange={(evt) => isLoginValid(this.loginRef, evt)} required/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">

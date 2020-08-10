@@ -48,6 +48,7 @@ describe(`app renders correctly`, () => {
         poster: `../img/aviator.jpg`,
       },
       ],
+      isError: false,
       login: () => {},
       authorizationStatus: `NO_AUTH`,
       isMovieVideoplayerActive: false,

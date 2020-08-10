@@ -7,7 +7,6 @@ import withFilter from "../../hocs/with-filter/with-filter.js";
 import Header from "../header/header.jsx";
 import {history} from "../../history.js";
 import {AppRoute} from "../../common.js";
-import {ErrorScreen} from "../error-screen/error-screen.jsx";
 
 const SmartCatalog = withFilter(withShowMoreButton(Catalog));
 
@@ -22,13 +21,8 @@ const Main = (props) => {
     onFavoriteButtonClick,
     isError,
   } = props;
-  if (!promoFilm) {
-    history.push(AppRoute.ERROR);
-  }
+
   const {title, poster, bigPoster, genre, releaseDate, bgColor, isFavorite} = promoFilm;
-
-  console.log(props);
-
 
   return <>
     <section className="movie-card" style={{backgroundColor: bgColor}}>

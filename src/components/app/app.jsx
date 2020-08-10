@@ -41,6 +41,10 @@ const App = (props) => {
     isError,
   } = props;
 
+  if (!filmsData) {
+    return <ErrorScreen errorText={`Ошибка загрузки данных`} />;
+  }
+
   const activeMovie = filmId
     ? filmsData.find((element) => {
       return element.id.toString() === filmId.toString();
