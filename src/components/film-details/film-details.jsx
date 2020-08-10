@@ -5,13 +5,15 @@ import Tabs from "../tabs/tabs.jsx";
 import {TabsType, AppRoute} from "../../common.js";
 import MoreFilmsAlike from "../more-films-alike/more-films-alike.jsx";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {getCurrentTab, getShowedFilmId} from "../../reducer/screen/selectors.js";
-import {getFilms} from "../../reducer/data/selectors.js";
+import {getCurrentTab} from "../../reducer/screen/selectors.js";
+import {getFilms, getIsError} from "../../reducer/data/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
 import Header from "../header/header.jsx";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
 import {Link} from "react-router-dom";
 import {history} from "../../history.js";
+
+const FILMS_COUNT_ON_CLICK = 4;
 
 class FilmDetails extends PureComponent {
   constructor(props) {
@@ -19,8 +21,9 @@ class FilmDetails extends PureComponent {
   }
 
   componentDidMount() {
-    const {filmId, loadReviews} = this.props;
+    const {filmId, loadReviews, setFilmId} = this.props;
 
+    setFilmId(filmId);
     loadReviews(filmId);
   }
 
@@ -36,6 +39,7 @@ class FilmDetails extends PureComponent {
       authorizationInfo,
       onPlayButtonClick,
       loadReviews,
+      isError,
     } = this.props;
 
     const filmData = filmsData.find((element) => {
@@ -87,7 +91,16 @@ class FilmDetails extends PureComponent {
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button" type="button" onClick={onFavoriteButtonClick(filmData)}>
+                  <button
+                    className="btn btn--list movie-card__button"
+                    type="button"
+                    onClick={() => {
+                      if (isError) {
+                        history.push(AppRoute.LOGIN);
+                      }
+                      onFavoriteButtonClick(filmData);
+                    }}
+                  >
                     {
                       isFavorite
                         ? <svg viewBox="0 0 18 14" width="18" height="14">
@@ -156,7 +169,7 @@ class FilmDetails extends PureComponent {
           filmsAlike={filmsData
             .filter((it) => it.genre === filmData.genre)
             .filter((it) => it.id !== filmData.id)
-            .slice(0, 4)}
+            .slice(0, FILMS_COUNT_ON_CLICK)}
           onFilmCardClick={onFilmCardClick}
         />
       </>
@@ -166,27 +179,47 @@ class FilmDetails extends PureComponent {
 
 FilmDetails.propTypes = {
   filmId: PropTypes.number.isRequired,
-  filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filmsData: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    bigPoster: PropTypes.string.isRequired,
+    bgColor: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  })),
   onFilmCardClick: PropTypes.func.isRequired,
   onTabClick: PropTypes.func.isRequired,
   currentTab: PropTypes.string.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  authorizationInfo: PropTypes.object.isRequired,
+  authorizationInfo: PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+  }),
   onPlayButtonClick: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
   resetTab: PropTypes.func.isRequired,
+  setFilmId: PropTypes.func.isRequired,
+  isError: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
+  isError: getIsError(state),
   currentTab: getCurrentTab(state),
-  filmId: getShowedFilmId(state),
   filmsData: getFilms(state),
   authorizationStatus: getAuthorizationStatus(state),
   authorizationInfo: getAuthorizationInfo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  setFilmId: (id) => {
+    dispatch(ActionCreator.setFilmId(id));
+  },
+
   onTabClick: (evt) => {
     evt.preventDefault();
     const tab = evt.target.dataset.tab;

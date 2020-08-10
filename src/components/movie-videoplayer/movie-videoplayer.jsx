@@ -18,7 +18,7 @@ const MovieVideoplayer = (props) => {
   const timeElapsed = getTimeElapsed(duration - progress);
 
   if (!activeMovie) {
-    return <ErrorScreen/>;
+    return <ErrorScreen errorText={`Loading...`}/>;
   }
 
   return (

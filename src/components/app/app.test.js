@@ -12,13 +12,16 @@ const mockStore = configureStore([]);
 describe(`app renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      screenMode: `main page`,
       promoFilm: {
         title: `Aviator`,
         smallPoster: `../img/aviator.jpg`,
         genre: `Drama`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
         releaseDate: 2010,
+        poster: `../img/aviator.jpg`,
+        bigPoster: `../img/aviator.jpg`,
+        bgColor: `white`,
+        isFavorite: true,
       },
       filmsData: [{
         id: 2,
@@ -26,6 +29,7 @@ describe(`app renders correctly`, () => {
         smallPoster: `img/bohemian-rhapsody.jpg`,
         genre: `Dramas`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        poster: `../img/aviator.jpg`,
       },
       {
         id: 3,
@@ -33,6 +37,7 @@ describe(`app renders correctly`, () => {
         smallPoster: `img/macbeth.jpg`,
         genre: `Dramas`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        poster: `../img/aviator.jpg`,
       },
       {
         id: 4,
@@ -40,6 +45,7 @@ describe(`app renders correctly`, () => {
         smallPoster: `img/aviator.jpg`,
         genre: `Horror`,
         preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        poster: `../img/aviator.jpg`,
       },
       ],
       login: () => {},

@@ -7,6 +7,8 @@ const initialState = {
   promoFilm: {},
   favoriteFilms: [],
   reviews: [],
+  isError: false,
+  errorType: null,
 };
 
 
@@ -34,10 +36,10 @@ const ActionCreator = {
     };
   },
 
-  catchError: () => {
+  catchError: (error) => {
     return {
       type: ActionType.CATCH_ERROR,
-      payload: true,
+      error,
     };
   },
 
@@ -68,8 +70,8 @@ const Operation = {
         const adaptedData = getAdaptedFilmsData(response.data);
         dispatch(ActionCreator.loadFilms(adaptedData));
       })
-      .catch(() => {
-        dispatch(ActionCreator.catchError());
+      .catch((error) => {
+        dispatch(ActionCreator.catchError(error));
       });
   },
 
@@ -79,8 +81,8 @@ const Operation = {
         const adaptedData = getAdaptedFilmData(response.data);
         dispatch(ActionCreator.loadPromo(adaptedData));
       })
-      .catch(() => {
-        dispatch(ActionCreator.catchError());
+      .catch((error) => {
+        dispatch(ActionCreator.catchError(error));
       });
   },
 
@@ -92,8 +94,8 @@ const Operation = {
           dispatch(ActionCreator.loadFavoriteFilms(favoriteFilms));
         }
       })
-      .catch(() => {
-        dispatch(ActionCreator.catchError());
+      .catch((error) => {
+        dispatch(ActionCreator.catchError(error));
       });
   },
 
@@ -103,8 +105,8 @@ const Operation = {
       dispatch(Operation.loadFilms());
       dispatch(Operation.loadPromo());
     })
-      .catch(() => {
-        dispatch(ActionCreator.catchError());
+      .catch((error) => {
+        dispatch(ActionCreator.catchError(error));
       });
   },
 
@@ -113,8 +115,8 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
       })
-      .catch(() => {
-        dispatch(ActionCreator.catchError());
+      .catch((error) => {
+        dispatch(ActionCreator.catchError(error));
       });
   },
 
@@ -131,8 +133,8 @@ const Operation = {
       dispatch(ScreenActionCreator.addReview(false));
       dispatch(ScreenActionCreator.toggleFormState(false));
     })
-    .catch(() => {
-      dispatch(ActionCreator.catchError());
+    .catch((error) => {
+      dispatch(ActionCreator.catchError(error));
     });
   },
 };
@@ -151,7 +153,8 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.CATCH_ERROR:
       return extend(state, {
-        isError: action.payload,
+        isError: true,
+        errorType: action.error.response,
       });
 
     case ActionType.LOAD_FAVORITE_FILMS:

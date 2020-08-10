@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import Footer from "../footer/footer.jsx";
 import Catalog from "../catalog/catalog.jsx";
-import withButton from "../../hocs/with-show-more-button/with-show-more-button.js";
+import withShowMoreButton from "../../hocs/with-show-more-button/with-show-more-button.js";
 import withFilter from "../../hocs/with-filter/with-filter.js";
 import Header from "../header/header.jsx";
 import {history} from "../../history.js";
 import {AppRoute} from "../../common.js";
+import {ErrorScreen} from "../error-screen/error-screen.jsx";
 
-const SmartCatalog = withFilter(withButton(Catalog));
+const SmartCatalog = withFilter(withShowMoreButton(Catalog));
 
 const Main = (props) => {
   const {
@@ -18,9 +19,16 @@ const Main = (props) => {
     authorizationStatus,
     authorizationInfo,
     onPlayButtonClick,
-    onFavoriteButtonClick
+    onFavoriteButtonClick,
+    isError,
   } = props;
+  if (!promoFilm) {
+    history.push(AppRoute.ERROR);
+  }
   const {title, poster, bigPoster, genre, releaseDate, bgColor, isFavorite} = promoFilm;
+
+  console.log(props);
+
 
   return <>
     <section className="movie-card" style={{backgroundColor: bgColor}}>
@@ -65,7 +73,12 @@ const Main = (props) => {
               <button
                 className="btn btn--list movie-card__button"
                 type="button"
-                onClick={onFavoriteButtonClick(promoFilm)}
+                onClick={() => {
+                  if (isError) {
+                    history.push(AppRoute.LOGIN);
+                  }
+                  onFavoriteButtonClick(promoFilm);
+                }}
               >
                 {
                   isFavorite
@@ -93,13 +106,22 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promoFilm: PropTypes.object,
-  filmsData: PropTypes.arrayOf(PropTypes.object),
+  promoFilm: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    bigPoster: PropTypes.string.isRequired,
+    bgColor: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }),
+  filmsData: PropTypes.array.isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   authorizationInfo: PropTypes.object.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 export default Main;

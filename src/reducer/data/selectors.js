@@ -14,3 +14,7 @@ export const getFavoriteFilms = (state) => state[NAME_SPACE].favoriteFilms;
 export const getReviews = (state) => {
   return state[NAME_SPACE].reviews;
 };
+
+export const getErrorType = (state) => {
+  return state[NAME_SPACE].errorType;
+};

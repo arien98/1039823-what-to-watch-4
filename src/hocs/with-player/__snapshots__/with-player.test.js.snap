@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with player snapshot it renders correctly 1`] = `<div />`;

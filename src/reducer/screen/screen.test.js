@@ -1,30 +1,26 @@
 import {reducer, ActionType} from "./screen.js";
-import {ScreenMode, TabsType} from "../../common.js";
+import {TabsType} from "../../common.js";
 
 describe(`Screen reducer works correctly`, () => {
   it(`Reducer should change authorizationStatus by a given value`, () => {
     expect(reducer({
       showedFilmId: null,
-      screenMode: ScreenMode.MAIN,
       currentTab: null
     }, {
-      type: ActionType.SHOW_DETAILS,
+      type: ActionType.SET_FILM_ID,
       showedFilmId: 1,
     })).toEqual({
       showedFilmId: 1,
-      screenMode: ScreenMode.DETAILS,
       currentTab: TabsType.OVERVIEW
     });
 
     expect(reducer({
       showedFilmId: 1,
-      screenMode: ScreenMode.DETAILS,
     }, {
-      type: ActionType.SHOW_MAIN,
+      type: ActionType.RESET_FILM_ID,
       showedFilmId: null,
     })).toEqual({
       showedFilmId: null,
-      screenMode: ScreenMode.MAIN
     });
 
     expect(reducer({

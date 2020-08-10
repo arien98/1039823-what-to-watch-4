@@ -46,7 +46,16 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   currentTab: PropTypes.string,
-  filmData: PropTypes.object,
+  filmData: PropTypes.shape({
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runtime: PropTypes.number.isRequired,
+  }),
 };
 
 export default Tabs;

@@ -22,7 +22,7 @@ class MyList extends PureComponent {
     const {favoriteFilms, onFilmCardClick} = this.props;
 
     if (!favoriteFilms) {
-      return <ErrorScreen />;
+      return <ErrorScreen errorText={`Loading...`}/>;
     }
 
     return (

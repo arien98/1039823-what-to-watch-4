@@ -1,21 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const RatingLevelMaxCount = {
+  MIN: 0,
+  BAD: 3,
+  NORMAL: 5,
+  GOOD: 8,
+  VERY_GOOD: 10,
+};
+
 const OverviewTab = (props) => {
   const {ratingScore, ratingCount, description, director, starring} = props;
 
   const starringText = starring.join(`, `);
   const getRatingLevel = () => {
     switch (true) {
-      case (ratingScore >= 0, ratingScore < 3):
+      case (ratingScore >= RatingLevelMaxCount.MIN, ratingScore < RatingLevelMaxCount.BAD):
         return `Bad`;
-      case (ratingScore >= 3, ratingScore < 5):
+      case (ratingScore >= RatingLevelMaxCount.BAD, ratingScore < RatingLevelMaxCount.NORMAL):
         return `Normal`;
-      case (ratingScore >= 5, ratingScore < 8):
+      case (ratingScore >= RatingLevelMaxCount.NORMAL, ratingScore < RatingLevelMaxCount.GOOD):
         return `Good`;
-      case (ratingScore >= 8, ratingScore < 10):
+      case (ratingScore >= RatingLevelMaxCount.GOOD, ratingScore < RatingLevelMaxCount.VERY_GOOD):
         return `Very good`;
-      case (ratingScore >= 10):
+      case (ratingScore >= RatingLevelMaxCount.VERY_GOOD):
         return `Awesome`;
       default: return `Bad`;
     }

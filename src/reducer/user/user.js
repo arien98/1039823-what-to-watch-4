@@ -1,5 +1,6 @@
 import {extend} from "../../common.js";
 import createUserInfo from "../../adapter/user.js";
+import {ActionCreator as DataActionCreator} from "../data/data.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -45,7 +46,7 @@ const Operation = {
         dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
       })
       .catch((err) => {
-        throw err;
+        dispatch(DataActionCreator.catchError(err));
       });
   },
 
@@ -57,6 +58,9 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.loadAuthorizationInfo(response.data));
+      })
+      .catch((err) => {
+        dispatch(DataActionCreator.catchError(err));
       });
   },
 };

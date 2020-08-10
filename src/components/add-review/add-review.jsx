@@ -31,7 +31,7 @@ const AddReview = (props) => {
   });
 
   if (!activeMovie) {
-    return <ErrorScreen/>;
+    return <ErrorScreen errorText={`Идет загрузка...`}/>;
   }
 
   return (
@@ -67,7 +67,13 @@ const AddReview = (props) => {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form" onSubmit={onSubmitClick} disabled={isFormDisabled}>
+        <form action="#" className="add-review__form"
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            onSubmitClick();
+          }}
+          disabled={isFormDisabled}
+        >
           <div className="rating">
             <div className="rating__stars" onChange={onRatingChange}>
               {new Array(RATING)

@@ -11,8 +11,12 @@ const withVideo = (Component) => {
       super(props);
 
       this.state = {isVideoPlaying: false};
-      this._onMouseOver = this._onMouseOver.bind(this);
-      this._onMouseOut = this._onMouseOut.bind(this);
+      this._handleMouseOver = this._handleMouseOver.bind(this);
+      this._handleMouseOut = this._handleMouseOut.bind(this);
+    }
+
+    componentWillUnmount() {
+      clearTimeout(this._videoTimer);
     }
 
     render() {
@@ -23,21 +27,21 @@ const withVideo = (Component) => {
         <Component
           {...this.props}
           isVideoPlaying={this.state.isVideoPlaying}
-          onMouseOver={this._onMouseOver}
-          onMouseOut={this._onMouseOut}
+          onMouseOver={this._handleMouseOver}
+          onMouseOut={this._handleMouseOver}
         >
           <Video preview={preview} poster={smallPoster} />
         </Component>
       );
     }
 
-    _onMouseOver() {
+    _handleMouseOver() {
       this._videoTimer();
     }
 
-    _onMouseOut() {
+    _handleMouseOut() {
       this.setState({isVideoPlaying: false});
-      clearInterval(this._videoTimer);
+      clearTimeout(this._videoTimer);
     }
 
     _videoTimer() {
@@ -47,7 +51,10 @@ const withVideo = (Component) => {
 
   WithVideo.propTypes = {
     onFilmCardClick: PropTypes.func.isRequired,
-    filmData: PropTypes.object.isRequired,
+    filmData: PropTypes.shape({
+      smallPoster: PropTypes.string,
+      preview: PropTypes.string
+    }).isRequired,
   };
 
   return WithVideo;

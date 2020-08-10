@@ -2,9 +2,9 @@ import React from "react";
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Catalog from "../../components/catalog/catalog.jsx";
-import withButton from "./with-show-more-button.js";
+import withShowMoreButton from "./with-show-more-button.js";
 
-const CatalogWithButton = withButton(Catalog);
+const CatalogWithShowMoreButton = withShowMoreButton(Catalog);
 
 
 configure({adapter: new Adapter()});
@@ -81,10 +81,11 @@ describe(`catalog with filter`, () => {
       },
     ],
     genres: [`All genres`, `Dramas`, `Horror`],
+    filter: `All genres`,
   };
 
   test(`should show the button and 8 filmCards`, () => {
-    const catalog = mount(<CatalogWithButton {...props} />);
+    const catalog = mount(<CatalogWithShowMoreButton {...props} />);
 
     const button = catalog.find(`.catalog__button`);
     const filmCards = catalog.find(`.catalog__movies-card`);
@@ -94,7 +95,7 @@ describe(`catalog with filter`, () => {
   });
 
   test(`should hide after showing the rest`, () => {
-    const catalog = mount(<CatalogWithButton {...props} />);
+    const catalog = mount(<CatalogWithShowMoreButton {...props} />);
 
     const button = catalog.find(`.catalog__button`);
 

@@ -9,7 +9,7 @@ const withFilter = (Component) => {
 
       this.state = {filter: Genres.ALL};
 
-      this._onFilterClick = this._onFilterClick.bind(this);
+      this._handleFilterClick = this._handleFilterClick.bind(this);
     }
 
     render() {
@@ -22,9 +22,10 @@ const withFilter = (Component) => {
         <Component
           {...this.props}
           filmsData={this._getFilterdFilms()}
-          onFilterClick={this._onFilterClick}
+          onFilterClick={this._handleFilterClick}
           currentFilter={this.state.filter}
           genres={uniqueGenres}
+          filter={this.state.filter}
         ></Component>
       );
     }
@@ -37,7 +38,7 @@ const withFilter = (Component) => {
         : filmsData.filter((it) => it.genre === this.state.filter);
     }
 
-    _onFilterClick(evt) {
+    _handleFilterClick(evt) {
       evt.preventDefault();
       const targetFilter = evt.target.dataset.filter;
       this.setState({filter: targetFilter});

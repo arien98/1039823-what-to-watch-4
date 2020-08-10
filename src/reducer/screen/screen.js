@@ -1,8 +1,8 @@
-import {ScreenMode, TabsType, extend} from "../../common.js";
+import {TabsType, extend} from "../../common.js";
 
 const ActionType = {
-  SHOW_MAIN: `show main page`,
-  SHOW_DETAILS: `show film details page`,
+  RESET_FILM_ID: `RESET_FILM_ID`,
+  SET_FILM_ID: `SET_FILM_ID`,
   CHANGE_TAB: `change tab on film details page`,
   TOGGLE_FORM_STATE: `TOGGLE_FORM_STATE`,
   ACTIVATE_MOVIE_VIDEOPLAYER: `ACTIVATE_MOVIE_VIDEOPLAYER`,
@@ -10,13 +10,13 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  showMain: () => ({
-    type: ActionType.SHOW_MAIN,
+  resetFilmId: () => ({
+    type: ActionType.RESET_FILM_ID,
     showedFilmId: null,
   }),
 
-  showDetails: (id) => ({
-    type: ActionType.SHOW_DETAILS,
+  setFilmId: (id) => ({
+    type: ActionType.SET_FILM_ID,
     showedFilmId: id,
   }),
 
@@ -42,7 +42,6 @@ const ActionCreator = {
 };
 
 const initialState = {
-  screenMode: ScreenMode.MAIN,
   showedFilmId: null,
   currentTab: TabsType.OVERVIEW,
   isFormDisabled: false,
@@ -53,15 +52,14 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case ActionType.SHOW_DETAILS:
+    case ActionType.SET_FILM_ID:
       return extend(state, {
-        screenMode: ScreenMode.DETAILS,
         showedFilmId: action.showedFilmId,
         currentTab: TabsType.OVERVIEW
       });
 
-    case ActionType.SHOW_MAIN:
-      return extend(state, {screenMode: ScreenMode.MAIN, showedFilmId: action.showedFilmId});
+    case ActionType.RESET_FILM_ID:
+      return extend(state, {showedFilmId: action.showedFilmId});
 
     case ActionType.CHANGE_TAB:
       return extend(state, {currentTab: action.tab});

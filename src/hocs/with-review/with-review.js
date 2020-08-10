@@ -7,13 +7,15 @@ const Review = {
   MAX_LENGTH: 400,
 };
 
+const INITIAL_RATING = 5;
+
 const withReview = (Component) => {
   class WithReview extends PureComponent {
     constructor(props) {
       super(props);
 
       this.state = {
-        rating: 5,
+        rating: INITIAL_RATING,
         comment: ``,
         isSubmitDisabled: true,
       };
@@ -36,7 +38,7 @@ const withReview = (Component) => {
       });
     }
 
-    _handleSubmitClick(evt) {
+    _handleSubmitClick() {
       const {filmId, onReviewSubmit} = this.props;
 
       const review = {
@@ -44,7 +46,6 @@ const withReview = (Component) => {
         comment: this.state.comment,
       };
 
-      evt.preventDefault();
       onReviewSubmit(filmId, review);
       history.goBack();
     }

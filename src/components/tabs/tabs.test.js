@@ -20,7 +20,7 @@ describe(`main renders correctly`, () => {
           `Anthony Mann`,
           `Guy Ritchie`,
         ],
-        runtime: `1h 10m`,
+        runtime: 90,
       },
     };
 

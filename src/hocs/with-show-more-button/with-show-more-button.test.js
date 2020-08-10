@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
-import withButton from "./with-show-more-button.js";
+import withShowMoreButton from "./with-show-more-button.js";
 
 const MockComponent = (props) => {
   const {children} = props;
@@ -20,7 +20,7 @@ MockComponent.propTypes = {
   ]).isRequired,
 };
 
-const MockComponentWrapped = withButton(MockComponent);
+const MockComponentWrapped = withShowMoreButton(MockComponent);
 
 it(`with button renders correctly`, () => {
   const props = {
@@ -72,6 +72,7 @@ it(`with button renders correctly`, () => {
       },
     ],
     genres: [`All genres`, `Dramas`, `Horror`],
+    filter: `All genres`,
   };
 
   const tree = renderer.create(
