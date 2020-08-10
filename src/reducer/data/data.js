@@ -1,5 +1,5 @@
 import {extend} from "../../common.js";
-import {getAdaptedFilmsData, getAdaptedFilmData} from "../../adapter/adapter.js";
+import {getAdaptedFilmsData, getAdaptedFilmData} from "../../adapter/films.js";
 import {ActionCreator as ScreenActionCreator} from "../screen/screen.js";
 
 const initialState = {
@@ -104,7 +104,7 @@ const Operation = {
       dispatch(Operation.loadPromo());
     })
       .catch(() => {
-        dispatch(Operation.catchError());
+        dispatch(ActionCreator.catchError());
       });
   },
 

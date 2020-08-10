@@ -47,7 +47,6 @@ const Tabs = (props) => {
 Tabs.propTypes = {
   currentTab: PropTypes.string,
   filmData: PropTypes.object,
-  loadReviews: PropTypes.func.isRequired,
 };
 
 export default Tabs;

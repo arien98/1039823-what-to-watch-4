@@ -11,7 +11,15 @@ import {AppRoute} from "../../common.js";
 const SmartCatalog = withFilter(withButton(Catalog));
 
 const Main = (props) => {
-  const {promoFilm, filmsData, onFilmCardClick, authorizationStatus, authorizationInfo, onPlayButtonClick, onFavoriteButtonClick} = props;
+  const {
+    promoFilm,
+    filmsData,
+    onFilmCardClick,
+    authorizationStatus,
+    authorizationInfo,
+    onPlayButtonClick,
+    onFavoriteButtonClick
+  } = props;
   const {title, poster, bigPoster, genre, releaseDate, bgColor, isFavorite} = promoFilm;
 
   return <>

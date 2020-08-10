@@ -6,6 +6,7 @@ import withVideo from "./with-video.jsx";
 
 const FilmCardWithVideo = withVideo(FilmCard);
 
+jest.useFakeTimers();
 
 configure({adapter: new Adapter()});
 
@@ -37,6 +38,8 @@ describe(`film card with video`, () => {
     const filmImage = filmCard.find(`.small-movie-card__image`);
 
     filmImage.simulate(`mouseover`);
+
+    jest.useFakeTimers();
 
     expect(filmCard.find(`.small-movie-card__video`)).toHaveLength(1);
     expect(filmCard.find(`.small-movie-card__pic`)).toHaveLength(0);

@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`main renders correctly it renders correctly 1`] = `
+exports[`Main page should render correctly 1`] = `
 Array [
   <section
     className="movie-card"
+    style={
+      Object {
+        "backgroundColor": undefined,
+      }
+    }
   >
     <div
       className="movie-card__bg"
-      style={
-        Object {
-          "backgroundColor": undefined,
-        }
-      }
     >
       <img
         alt="Aviator"
@@ -30,6 +30,8 @@ Array [
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -51,16 +53,13 @@ Array [
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          className="user-block__link"
+          href="/login"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          Sign in
+        </a>
       </div>
     </header>
     <div
@@ -105,6 +104,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -113,7 +113,7 @@ Array [
                 width="19"
               >
                 <use
-                  href="#play-s"
+                  xlinkHref="#play-s"
                 />
               </svg>
               <span>
@@ -130,7 +130,7 @@ Array [
                 width="19"
               >
                 <use
-                  href="#add"
+                  xlinkHref="#add"
                 />
               </svg>
               <span>

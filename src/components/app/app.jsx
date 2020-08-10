@@ -70,14 +70,7 @@ class App extends PureComponent {
 
           <Route exact path={AppRoute.LOGIN}
             render={() => {
-
-              return authorizationStatus !== AuthorizationStatus.AUTH
-                ? <SignIn
-                  onSubmit={login}
-                />
-                : <Redirect
-                  to={AppRoute.ROOT}
-                />;
+              return <SignIn onSubmit={login} />;
             }}
           />
 

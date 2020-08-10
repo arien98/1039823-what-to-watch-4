@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Video from "../../components/video/video.jsx";
 
+const VIDEO_TIMEOUT = 1000;
+
 const withVideo = (Component) => {
 
   class WithVideo extends PureComponent {
@@ -30,11 +32,16 @@ const withVideo = (Component) => {
     }
 
     _onMouseOver() {
-      this.setState({isVideoPlaying: true});
+      this._videoTimer();
     }
 
     _onMouseOut() {
       this.setState({isVideoPlaying: false});
+      clearInterval(this._videoTimer);
+    }
+
+    _videoTimer() {
+      setTimeout(() => this.setState({isVideoPlaying: true}), VIDEO_TIMEOUT);
     }
   }
 

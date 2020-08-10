@@ -1,16 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {App} from "./app";
+import {App} from "./app.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
+import {NameSpace} from "../../reducer/name-space.js";
+import {history} from '../../history.js';
 
 const mockStore = configureStore([]);
 
 describe(`app renders correctly`, () => {
   test(`it renders correctly`, () => {
     const props = {
-      onFilmCardClick: () => {},
-      onPlayButtonClick: () => {},
       screenMode: `main page`,
       promoFilm: {
         title: `Aviator`,
@@ -42,19 +43,43 @@ describe(`app renders correctly`, () => {
       },
       ],
       login: () => {},
-      authorizationStatus: `AUTH`,
+      authorizationStatus: `NO_AUTH`,
+      isMovieVideoplayerActive: false,
+      onExitButtonClick: () => {},
+      onFavoriteButtonClick: () => {},
+      onFilmCardClick: () => {},
+      onPlayButtonClick: () => {},
+      onReviewSubmit: () => {},
+      authorizationInfo: {
+        id: 0,
+        email: ``,
+        name: ``,
+        avatar: ``,
+      }
     };
 
     const store = mockStore({
-      filter: `All genres`,
-      showedFilm: null,
-      currentTab: `Overview`,
+      [NameSpace.USER]: {
+        authorizationStatus: `NO_AUTH`,
+        authorizationInfo: {
+          id: 0,
+          email: ``,
+          name: ``,
+          avatar: ``,
+        }
+      },
+      [NameSpace.SCREEN]: {
+        showedFilm: null,
+        currentTab: `Overview`,
+      }
     });
 
     const tree = renderer
       .create(
           <Provider store={store}>
-            <App {...props}/>
+            <Router history={history}>
+              <App {...props}/>
+            </Router>
           </Provider>
       )
       .toJSON();

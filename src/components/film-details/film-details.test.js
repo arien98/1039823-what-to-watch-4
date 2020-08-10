@@ -3,6 +3,9 @@ import renderer from "react-test-renderer";
 import {FilmDetails} from "../film-details/film-details.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {Router} from 'react-router-dom';
+import {history} from '../../history.js';
+import {NameSpace} from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
@@ -64,14 +67,37 @@ describe(`film deatails`, () => {
         },
       ],
       filmId: 1,
+      onFavoriteButtonClick: () => {},
+      authorizationStatus: `NO_AUTH`,
+      authorizationInfo: {
+        id: 0,
+        email: ``,
+        name: ``,
+        avatar: ``,
+      },
+      onPlayButtonClick: () => {},
+      loadReviews: () => {},
+      resetTab: () => {},
     };
 
-    const store = mockStore({});
+    const store = mockStore({
+      [NameSpace.USER]: {
+        authorizationStatus: `NO_AUTH`,
+        authorizationInfo: {
+          id: 0,
+          email: ``,
+          name: ``,
+          avatar: ``,
+        }
+      }
+    });
 
     const tree = renderer
       .create(
           <Provider store={store}>
-            <FilmDetails {...props} />
+            <Router history={history}>
+              <FilmDetails {...props} />
+            </Router>
           </Provider>
       )
       .toJSON();

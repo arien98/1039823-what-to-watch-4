@@ -103,6 +103,5 @@ describe(`catalog with filter`, () => {
     const filmCards = catalog.find(`.catalog__movies-card`);
 
     expect(filmCards.length).toEqual(9);
-    // expect(button.length).toEqual(0);
   });
 });

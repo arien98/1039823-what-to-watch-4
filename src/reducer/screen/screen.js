@@ -54,7 +54,11 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case ActionType.SHOW_DETAILS:
-      return extend(state, {screenMode: ScreenMode.DETAILS, showedFilmId: action.showedFilmId});
+      return extend(state, {
+        screenMode: ScreenMode.DETAILS,
+        showedFilmId: action.showedFilmId,
+        currentTab: TabsType.OVERVIEW
+      });
 
     case ActionType.SHOW_MAIN:
       return extend(state, {screenMode: ScreenMode.MAIN, showedFilmId: action.showedFilmId});

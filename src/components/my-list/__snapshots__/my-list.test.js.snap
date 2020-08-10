@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Correctly ErrorScreen render 1`] = `
+exports[`AddReview page should render correctly 1`] = `
 <div
   className="user-page"
 >
@@ -12,7 +12,8 @@ exports[`Correctly ErrorScreen render 1`] = `
     >
       <a
         className="logo__link"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -31,18 +32,129 @@ exports[`Correctly ErrorScreen render 1`] = `
         </span>
       </a>
     </div>
-  </header>
-  <div
-    className="sign-in user-page__content"
-  >
-    <div
-      className="sign-in__message"
+    <h1
+      className="page-title user-page__title"
     >
-      <p>
-        Loading...
-      </p>
+      My list
+    </h1>
+    <div
+      className="user-block"
+    >
+      <a
+        className="user-block__link"
+        href="/login"
+        onClick={[Function]}
+      >
+        Sign in
+      </a>
     </div>
-  </div>
+  </header>
+  <section
+    className="catalog"
+  >
+    <h2
+      className="catalog__title visually-hidden"
+    >
+      Catalog
+    </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <article
+        className="small-movie-card catalog__movies-card"
+      >
+        <div
+          className="small-movie-card__image"
+          data-id={1}
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <img
+            alt="Mindhunter"
+            className="small-movie-card__pic"
+            height="175"
+            src="http://placekitten.com/245/175"
+            width="280"
+          />
+        </div>
+        <h3
+          className="small-movie-card__title"
+          onClick={[Function]}
+        >
+          <a
+            className="small-movie-card__link"
+            data-id={1}
+            href="movie-page.html"
+          >
+            Mindhunter
+          </a>
+        </h3>
+      </article>
+      <article
+        className="small-movie-card catalog__movies-card"
+      >
+        <div
+          className="small-movie-card__image"
+          data-id={2}
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <img
+            alt="Aviator"
+            className="small-movie-card__pic"
+            height="175"
+            src="http://placekitten.com/245/175"
+            width="280"
+          />
+        </div>
+        <h3
+          className="small-movie-card__title"
+          onClick={[Function]}
+        >
+          <a
+            className="small-movie-card__link"
+            data-id={2}
+            href="movie-page.html"
+          >
+            Aviator
+          </a>
+        </h3>
+      </article>
+      <article
+        className="small-movie-card catalog__movies-card"
+      >
+        <div
+          className="small-movie-card__image"
+          data-id={3}
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <img
+            alt="Pulp Fiction"
+            className="small-movie-card__pic"
+            height="175"
+            src="http://placekitten.com/245/175"
+            width="280"
+          />
+        </div>
+        <h3
+          className="small-movie-card__title"
+          onClick={[Function]}
+        >
+          <a
+            className="small-movie-card__link"
+            data-id={3}
+            href="movie-page.html"
+          >
+            Pulp Fiction
+          </a>
+        </h3>
+      </article>
+    </div>
+  </section>
   <footer
     className="page-footer"
   >
@@ -51,7 +163,6 @@ exports[`Correctly ErrorScreen render 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href="main.html"
       >
         <span
           className="logo__letter logo__letter--1"
@@ -74,9 +185,7 @@ exports[`Correctly ErrorScreen render 1`] = `
       className="copyright"
     >
       <p>
-        © 
-        2020
-         What to watch Ltd.
+        © 2019 What to watch Ltd.
       </p>
     </div>
   </footer>
