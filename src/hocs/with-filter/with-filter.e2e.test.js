@@ -15,37 +15,20 @@ describe(`catalog with filter`, () => {
     onFilterClick: () => {},
     currentFilter: `All genres`,
     children: [],
-    genres: [`All genres`, `Dramas`, `Horror`],
-    filmsData: [{
-      id: 2,
-      title: `Bohemian Rhapsody`,
-      smallPoster: `img/bohemian-rhapsody.jpg`,
-      genre: `Dramas`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    },
-    {
-      id: 3,
-      title: `Macbeth`,
-      smallPoster: `img/macbeth.jpg`,
-      genre: `Horror`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    },
-    {
-      id: 4,
-      title: `Aviator`,
-      smallPoster: `img/aviator.jpg`,
-      genre: `Horror`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    },
+    genres: [`All genres`, `Horror`, `Crime`],
+    filmsData: [
+      {id: 1, bgColor: `#A6B7AC`, bigPoster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`, description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`, director: `Martin Scorsese`, genre: `Crime`, isFavorite: false, poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`, preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`, ratingCount: 370881, ratingScore: 8.8, releaseDate: 2002, runtime: 167, smallPoster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`, starring: [`Leonardo DiCaprio`, `Cameron Diaz`, `Daniel Day-Lewis`], title: `Gangs of new york`, video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`},
+      {id: 2, bgColor: `#A6B7AC`, bigPoster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`, description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`, director: `Martin Scorsese`, genre: `Horror`, isFavorite: false, poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`, preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`, ratingCount: 370881, ratingScore: 8.8, releaseDate: 2002, runtime: 167, smallPoster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`, starring: [`Leonardo DiCaprio`, `Cameron Diaz`, `Daniel Day-Lewis`], title: `Gangs of new york`, video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`},
+      {id: 3, bgColor: `#A6B7AC`, bigPoster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`, description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`, director: `Martin Scorsese`, genre: `Horror`, isFavorite: false, poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`, preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`, ratingCount: 370881, ratingScore: 8.8, releaseDate: 2002, runtime: 167, smallPoster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`, starring: [`Leonardo DiCaprio`, `Cameron Diaz`, `Daniel Day-Lewis`], title: `Gangs of new york`, video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`},
     ],
   };
 
   test(`should filter drama films on click`, () => {
     const catalog = mount(<CatalogWithFilter {...props} />);
 
-    const dramaFilters = catalog.find(`a[data-filter="Dramas"]`);
+    const crimesFilters = catalog.find(`a[data-filter="Crime"]`);
 
-    dramaFilters.simulate(`click`);
+    crimesFilters.simulate(`click`);
 
     const dramaFilms = catalog.find(`.small-movie-card`);
 
@@ -55,9 +38,9 @@ describe(`catalog with filter`, () => {
   test(`should filter horror films on click`, () => {
     const catalog = mount(<CatalogWithFilter {...props} />);
 
-    const dramaFilters = catalog.find(`a[data-filter="Horror"]`);
+    const crimesFilters = catalog.find(`a[data-filter="Horror"]`);
 
-    dramaFilters.simulate(`click`);
+    crimesFilters.simulate(`click`);
 
     const dramaFilms = catalog.find(`.small-movie-card`);
 

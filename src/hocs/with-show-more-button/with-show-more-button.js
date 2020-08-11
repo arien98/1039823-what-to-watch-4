@@ -23,6 +23,12 @@ const withShowMoreButton = (Component) => {
       }
     }
 
+    _handleShowMoreButtonClick() {
+      this.setState((prevState) => ({
+        filmsOnPage: prevState.filmsOnPage + ADD_FILMS_COUNT
+      }));
+    }
+
     render() {
       const {filmsData} = this.props;
 
@@ -38,16 +44,28 @@ const withShowMoreButton = (Component) => {
         </Component>
       );
     }
-
-    _handleShowMoreButtonClick() {
-      this.setState((prevState) => ({
-        filmsOnPage: prevState.filmsOnPage + ADD_FILMS_COUNT
-      }));
-    }
   }
 
   WithShowMoreButton.propTypes = {
-    filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    filmsData: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster: PropTypes.string.isRequired,
+      smallPoster: PropTypes.string.isRequired,
+      bigPoster: PropTypes.string.isRequired,
+      bgColor: PropTypes.string.isRequired,
+      genre: PropTypes.string.isRequired,
+      releaseDate: PropTypes.number.isRequired,
+      ratingScore: PropTypes.number.isRequired,
+      ratingCount: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      director: PropTypes.string.isRequired,
+      starring: PropTypes.arrayOf(PropTypes.string.isRequired),
+      runtime: PropTypes.number.isRequired,
+      preview: PropTypes.string.isRequired,
+      video: PropTypes.string.isRequired,
+      isFavorite: PropTypes.bool.isRequired,
+    })).isRequired,
     filter: PropTypes.string.isRequired,
   };
 

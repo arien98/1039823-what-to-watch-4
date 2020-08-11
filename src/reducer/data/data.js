@@ -72,7 +72,6 @@ const Operation = {
       })
       .catch((error) => {
         const recievedError = error.response ? error.response.status : 1;
-        console.log(recievedError);
         dispatch(ActionCreator.catchError(recievedError));
       });
   },

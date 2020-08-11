@@ -21,9 +21,9 @@ class MyList extends PureComponent {
   render() {
     const {favoriteFilms, onFilmCardClick} = this.props;
 
-    // if (!favoriteFilms) {
-    //   return <ErrorScreen errorText={`Loading...`}/>;
-    // }
+    if (!favoriteFilms) {
+      return <ErrorScreen errorText={`Loading...`}/>;
+    }
 
     return (
       <div className="user-page">

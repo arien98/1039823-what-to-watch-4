@@ -44,7 +44,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  authorizationInfo: PropTypes.exact({
+  authorizationInfo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     email: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

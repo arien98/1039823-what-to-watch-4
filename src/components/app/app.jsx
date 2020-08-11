@@ -5,7 +5,7 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {AppRoute, Error, ErrorMessages} from "../../common.js";
+import {AppRoute, Error} from "../../common.js";
 import {getFilms, getPromoFilm, getErrorType} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
@@ -44,7 +44,7 @@ const App = (props) => {
     errorType,
   } = props;
 
-  if (loadError || errorType === ErrorMessages[1]) {
+  if (loadError || errorType === Error.NO_CONNECTION) {
     return <div>Ошибка загрузки сервера</div>;
   }
 
@@ -156,10 +156,51 @@ const App = (props) => {
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  authorizationInfo: PropTypes.object.isRequired,
+  authorizationInfo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+  }),
   login: PropTypes.func.isRequired,
-  promoFilm: PropTypes.object.isRequired,
-  filmsData: PropTypes.array.isRequired,
+  promoFilm: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    smallPoster: PropTypes.string.isRequired,
+    bigPoster: PropTypes.string.isRequired,
+    bgColor: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired),
+    runtime: PropTypes.number.isRequired,
+    preview: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }).isRequired,
+  filmsData: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    smallPoster: PropTypes.string.isRequired,
+    bigPoster: PropTypes.string.isRequired,
+    bgColor: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired),
+    runtime: PropTypes.number.isRequired,
+    preview: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  })).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
   onReviewSubmit: PropTypes.func.isRequired,
   filmId: PropTypes.number,

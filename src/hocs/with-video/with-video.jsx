@@ -20,6 +20,15 @@ const withVideo = (Component) => {
       clearTimeout(this._videoTimer);
     }
 
+    _handleMouseOver() {
+      this._videoTimer = setTimeout(() => this.setState({isVideoPlaying: true}), VIDEO_TIMEOUT);
+    }
+
+    _handleMouseOut() {
+      clearTimeout(this._videoTimer);
+      this.setState({isVideoPlaying: false});
+    }
+
     render() {
       const {filmData} = this.props;
       const {smallPoster, preview} = filmData;
@@ -34,15 +43,6 @@ const withVideo = (Component) => {
           <Video preview={preview} poster={smallPoster} />
         </Component>
       );
-    }
-
-    _handleMouseOver() {
-      this._videoTimer = setTimeout(() => this.setState({isVideoPlaying: true}), VIDEO_TIMEOUT);
-    }
-
-    _handleMouseOut() {
-      clearTimeout(this._videoTimer);
-      this.setState({isVideoPlaying: false});
     }
   }
 

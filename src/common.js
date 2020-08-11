@@ -1,4 +1,5 @@
 export const Error = {
+  NO_CONNECTION: 1,
   BAD_INFO: 400,
   UNAUTHORIZED: 401,
 };

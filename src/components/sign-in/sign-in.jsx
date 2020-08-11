@@ -79,7 +79,7 @@ SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   isLoginValid: PropTypes.func.isRequired,
   isPasswordValid: PropTypes.func.isRequired,
-  isInputValid: PropTypes.bool.isRequired,
+  isInputValid: PropTypes.func.isRequired,
 };
 
 export default SignIn;

@@ -15,6 +15,9 @@ const PrivateRoute = (props) => {
       path={path}
       exact={exact}
       render={(innerProps) => {
+        if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
+          return <div>Loading...</div>;
+        }
         return (
           authorizationStatus === AuthorizationStatus.AUTH
             ? render(innerProps)

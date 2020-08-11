@@ -5,10 +5,12 @@ import {ActionCreator as DataActionCreator} from "../data/data.js";
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
+  UNKNOWN: `UNKNOWN`,
+
 };
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: AuthorizationStatus.UNKNOWN,
   authorizationInfo: {
     id: 0,
     email: ``,
@@ -46,7 +48,9 @@ const Operation = {
         dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
       })
       .catch((error) => {
-        dispatch(DataActionCreator.catchError(error));
+        const recievedError = error.response ? error.response.status : 1;
+        dispatch(DataActionCreator.catchError(recievedError));
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
 
         throw error;
       });
@@ -62,7 +66,8 @@ const Operation = {
         dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
       })
       .catch((error) => {
-        dispatch(DataActionCreator.catchError(error));
+        const recievedError = error.response ? error.response.status : 1;
+        dispatch(DataActionCreator.catchError(recievedError));
 
         throw error;
       });

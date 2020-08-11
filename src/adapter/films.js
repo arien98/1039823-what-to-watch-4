@@ -9,7 +9,6 @@ export const getAdaptedFilmData = (data) => {
     genre: data.genre,
     releaseDate: data.released,
     ratingScore: data.rating,
-    ratingLevel: 10,
     ratingCount: data.scores_count,
     description: data.description,
     director: data.director,
