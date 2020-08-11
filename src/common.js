@@ -1,4 +1,5 @@
 export const Error = {
+  BAD_INFO: 400,
   UNAUTHORIZED: 401,
 };
 

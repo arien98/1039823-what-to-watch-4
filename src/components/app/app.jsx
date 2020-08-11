@@ -5,7 +5,7 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {AppRoute} from "../../common.js";
+import {AppRoute, Error} from "../../common.js";
 import {getFilms, getPromoFilm, getErrorType} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
@@ -40,7 +40,6 @@ const App = (props) => {
     onPlayButtonClick,
     onExitButtonClick,
     onFavoriteButtonClick,
-    errorType,
     loadError
   } = props;
 
@@ -68,7 +67,6 @@ const App = (props) => {
               authorizationInfo={authorizationInfo}
               onPlayButtonClick={onPlayButtonClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
-              errorType={errorType}
             />;
           }}
         />
@@ -207,11 +205,21 @@ const mapDispatchToProps = (dispatch) => ({
 
   onReviewSubmit(filmId, review) {
     dispatch(DataOperation.postReview(filmId, review))
-      .catch(() => history.push(AppRoute.ERROR));
+      .catch((error) => {
+        if (error.response.status === Error.BAD_INFO) {
+          return;
+        }
+        history.push(AppRoute.ERROR);
+      });
   },
 
   onFavoriteButtonClick: (film) => () => {
-    dispatch(DataOperation.changeFavoriteState(film));
+    dispatch(DataOperation.changeFavoriteState(film))
+      .catch((error) => {
+        if (error.response.status === Error.UNAUTHORIZED) {
+          history.push(AppRoute.LOGIN);
+        }
+      });
   },
 });
 
