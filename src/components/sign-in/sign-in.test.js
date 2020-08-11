@@ -12,6 +12,9 @@ describe(`sign in`, () => {
           <Router history={history}>
             <SignIn
               onSubmit={() => {}}
+              isLoginValid={() => {}}
+              isPasswordValid={() => {}}
+              isInputValid={() => {}}
             />)
           </Router>
       )

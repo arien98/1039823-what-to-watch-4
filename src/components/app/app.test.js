@@ -62,7 +62,8 @@ describe(`app renders correctly`, () => {
         email: ``,
         name: ``,
         avatar: ``,
-      }
+      },
+      loadError: true,
     };
 
     const store = mockStore({

@@ -1,8 +1,5 @@
 import Axios from "axios";
-
-const Error = {
-  UNAUTHORIZED: 401,
-};
+import {Error} from "./common.js";
 
 export const createAPI = (onUnauthorized) => {
   const api = Axios.create({

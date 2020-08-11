@@ -6,7 +6,7 @@ import FilmDetails from "../film-details/film-details.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {AppRoute} from "../../common.js";
-import {getFilms, getPromoFilm, getIsError} from "../../reducer/data/selectors.js";
+import {getFilms, getPromoFilm, getErrorType} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -20,9 +20,11 @@ import MyList from "../my-list/my-list.jsx";
 import withFullScreenVideoplayer from "../../hocs/with-full-screen-videoplayer/with-full-screen-videoplayer.js";
 import MovieVideoplayer from "../movie-videoplayer/movie-videoplayer.jsx";
 import ErrorScreen from "../error-screen/error-screen.jsx";
+import withValidityCheck from "../../hocs/with-validity-check/with-validity-check.jsx";
 
 const MovieVideoplayerWrapper = withFullScreenVideoplayer(MovieVideoplayer);
 const ReviewWrapper = withReview(AddReview);
+const SignInWrapper = withValidityCheck(SignIn);
 
 const App = (props) => {
   const {
@@ -38,11 +40,12 @@ const App = (props) => {
     onPlayButtonClick,
     onExitButtonClick,
     onFavoriteButtonClick,
-    isError,
+    errorType,
+    loadError
   } = props;
 
-  if (!filmsData) {
-    return <ErrorScreen errorText={`Ошибка загрузки данных`} />;
+  if (loadError) {
+    return <div>Ошибка загрузки сервера</div>;
   }
 
   const activeMovie = filmId
@@ -65,7 +68,7 @@ const App = (props) => {
               authorizationInfo={authorizationInfo}
               onPlayButtonClick={onPlayButtonClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
-              isError={isError}
+              errorType={errorType}
             />;
           }}
         />
@@ -74,7 +77,7 @@ const App = (props) => {
           render={() => {
 
             return authorizationStatus === AuthorizationStatus.NO_AUTH
-              ? <SignIn
+              ? <SignInWrapper
                 onSubmit={login}
               />
               : <Redirect
@@ -165,7 +168,8 @@ App.propTypes = {
   onExitButtonClick: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
-  isError: PropTypes.bool.isRequired,
+  errorType: PropTypes.number,
+  loadError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -176,7 +180,7 @@ const mapStateToProps = (state) => ({
   authorizationInfo: getAuthorizationInfo(state),
   isMovieVideoplayerActive: getIsMovieVideoplayerActive(state),
   onFavoriteButtonClick: PropTypes.func.isRequired,
-  isError: getIsError(state),
+  errorType: getErrorType(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -189,8 +193,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   login(authData) {
-    dispatch(UserOperation.login(authData));
-    history.push(AppRoute.ROOT);
+    dispatch(UserOperation.login(authData))
+      .then(() => history.push(AppRoute.ROOT))
+      .catch(() => history.push(AppRoute.ERROR));
   },
 
   onFilmCardClick: (evt) => {
@@ -201,7 +206,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onReviewSubmit(filmId, review) {
-    dispatch(DataOperation.postReview(filmId, review));
+    dispatch(DataOperation.postReview(filmId, review))
+      .catch(() => history.push(AppRoute.ERROR));
   },
 
   onFavoriteButtonClick: (film) => () => {

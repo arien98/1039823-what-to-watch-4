@@ -135,6 +135,8 @@ const Operation = {
     })
     .catch((error) => {
       dispatch(ActionCreator.catchError(error));
+
+      throw error;
     });
   },
 };

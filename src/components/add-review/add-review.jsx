@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {getIsError, getFilms} from "../../reducer/data/selectors.js";
+import {getFilms} from "../../reducer/data/selectors.js";
 import {getIsFormDisabled} from "../../reducer/screen/selectors.js";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
 import ErrorScreen from "../error-screen/error-screen.jsx";
@@ -19,7 +19,6 @@ const AddReview = (props) => {
     onSubmitClick,
     isFormDisabled,
     isSubmitDisabled,
-    isError,
     onRatingChange,
     onReviewChange,
     authorizationStatus,
@@ -106,8 +105,6 @@ const AddReview = (props) => {
           </div>
         </form>
 
-        {isError &&
-           <p style={{color: `tomato`, textAlign: `center`}}>Your review has not been sent. Please try again later.</p>}
       </div>
 
     </section>
@@ -119,7 +116,6 @@ AddReview.propTypes = {
   filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSubmitClick: PropTypes.func.isRequired,
   isSubmitDisabled: PropTypes.bool,
-  isError: PropTypes.bool,
   isFormDisabled: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   authorizationInfo: PropTypes.exact({
@@ -133,7 +129,6 @@ AddReview.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isError: getIsError(state),
   isFormDisabled: getIsFormDisabled(state),
   authorizationStatus: getAuthorizationStatus(state),
   authorizationInfo: getAuthorizationInfo(state),

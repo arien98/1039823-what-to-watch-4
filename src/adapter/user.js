@@ -1,8 +1,10 @@
-const createUserInfo = (user) => ({
-  id: user.id,
-  email: user.email,
-  name: user.name,
-  avatar: `https://4.react.pages.academy${user.avatar_url}`
-});
+const createUserInfo = (data) => {
+  return ({
+    id: data[`id`],
+    email: data[`email`],
+    name: data[`name`],
+    avatar: `https://4.react.pages.academy${data[`avatar_url`]}`,
+  });
+};
 
 export default createUserInfo;

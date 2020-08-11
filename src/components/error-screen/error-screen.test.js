@@ -13,12 +13,12 @@ const mockStore = configureStore([]);
 it(`Correctly ErrorScreen render`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
-      errorType: `400`,
+      errorType: 400,
     },
   });
 
   const props = {
-    errorType: `400`,
+    errorType: 400,
     errorText: `Ох уж эти ошибки`,
   };
 

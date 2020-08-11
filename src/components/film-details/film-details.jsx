@@ -2,11 +2,11 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Tabs from "../tabs/tabs.jsx";
-import {TabsType, AppRoute} from "../../common.js";
+import {TabsType, AppRoute, Error} from "../../common.js";
 import MoreFilmsAlike from "../more-films-alike/more-films-alike.jsx";
 import {ActionCreator} from "../../reducer/screen/screen.js";
 import {getCurrentTab} from "../../reducer/screen/selectors.js";
-import {getFilms, getIsError} from "../../reducer/data/selectors.js";
+import {getFilms, getErrorType} from "../../reducer/data/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
 import Header from "../header/header.jsx";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
@@ -39,7 +39,7 @@ class FilmDetails extends PureComponent {
       authorizationInfo,
       onPlayButtonClick,
       loadReviews,
-      isError,
+      errorType,
     } = this.props;
 
     const filmData = filmsData.find((element) => {
@@ -95,7 +95,7 @@ class FilmDetails extends PureComponent {
                     className="btn btn--list movie-card__button"
                     type="button"
                     onClick={() => {
-                      if (isError) {
+                      if (errorType === Error.UNAUTHORIZED) {
                         history.push(AppRoute.LOGIN);
                       }
                       onFavoriteButtonClick(filmData);
@@ -204,11 +204,11 @@ FilmDetails.propTypes = {
   loadReviews: PropTypes.func.isRequired,
   resetTab: PropTypes.func.isRequired,
   setFilmId: PropTypes.func.isRequired,
-  isError: PropTypes.bool,
+  errorType: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
-  isError: getIsError(state),
+  errorType: getErrorType(state),
   currentTab: getCurrentTab(state),
   filmsData: getFilms(state),
   authorizationStatus: getAuthorizationStatus(state),

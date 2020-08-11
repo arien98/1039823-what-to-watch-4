@@ -6,7 +6,7 @@ import withShowMoreButton from "../../hocs/with-show-more-button/with-show-more-
 import withFilter from "../../hocs/with-filter/with-filter.js";
 import Header from "../header/header.jsx";
 import {history} from "../../history.js";
-import {AppRoute} from "../../common.js";
+import {AppRoute, Error} from "../../common.js";
 
 const SmartCatalog = withFilter(withShowMoreButton(Catalog));
 
@@ -19,7 +19,7 @@ const Main = (props) => {
     authorizationInfo,
     onPlayButtonClick,
     onFavoriteButtonClick,
-    isError,
+    errorType,
   } = props;
 
   const {title, poster, bigPoster, genre, releaseDate, bgColor, isFavorite} = promoFilm;
@@ -68,7 +68,7 @@ const Main = (props) => {
                 className="btn btn--list movie-card__button"
                 type="button"
                 onClick={() => {
-                  if (isError) {
+                  if (errorType === Error.UNAUTHORIZED) {
                     history.push(AppRoute.LOGIN);
                   }
                   onFavoriteButtonClick(promoFilm);
@@ -115,7 +115,7 @@ Main.propTypes = {
   authorizationInfo: PropTypes.object.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
-  isError: PropTypes.bool.isRequired,
+  errorType: PropTypes.number,
 };
 
 export default Main;

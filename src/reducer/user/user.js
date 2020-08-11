@@ -45,8 +45,10 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
       })
-      .catch((err) => {
-        dispatch(DataActionCreator.catchError(err));
+      .catch((error) => {
+        dispatch(DataActionCreator.catchError(error));
+
+        throw error;
       });
   },
 
@@ -57,10 +59,12 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.loadAuthorizationInfo(response.data));
+        dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
       })
-      .catch((err) => {
-        dispatch(DataActionCreator.catchError(err));
+      .catch((error) => {
+        dispatch(DataActionCreator.catchError(error));
+
+        throw error;
       });
   },
 };

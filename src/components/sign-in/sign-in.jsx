@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import Footer from "../footer/footer.jsx";
 import {Link} from "react-router-dom";
-import {AppRoute, isLoginValid, validatePassword} from "../../common.js";
+import {AppRoute} from "../../common.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -18,7 +18,6 @@ class SignIn extends PureComponent {
     const {onSubmit} = this.props;
 
     evt.preventDefault();
-
     onSubmit({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
@@ -26,6 +25,12 @@ class SignIn extends PureComponent {
   }
 
   render() {
+    const {isLoginValid, isPasswordValid, isInputValid} = this.props;
+
+    const invalidMessage = <div className="sign-in__message">
+      <p>Please enter a valid email address</p>
+    </div>;
+
     return (
       <div className="user-page">
 
@@ -43,6 +48,9 @@ class SignIn extends PureComponent {
 
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form" onSubmit={this.handleSubmit}>
+            {
+              isInputValid ? `` : invalidMessage
+            }
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
@@ -51,7 +59,7 @@ class SignIn extends PureComponent {
               </div>
               <div className="sign-in__field">
                 <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
-                  id="user-password" ref={this.passwordRef} onChange={validatePassword} required/>
+                  id="user-password" ref={this.passwordRef} onChange={() => isPasswordValid(this.passwordRef)} required/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
             </div>
@@ -69,6 +77,9 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isLoginValid: PropTypes.func.isRequired,
+  isPasswordValid: PropTypes.func.isRequired,
+  isInputValid: PropTypes.func.isRequired,
 };
 
 export default SignIn;

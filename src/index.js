@@ -23,15 +23,17 @@ const store = createStore(
         applyMiddleware(thunk.withExtraArgument(api)))
 );
 
-const init = () => {
+const init = (error) => {
   ReactDOM.render(
       <Provider store={store}>
-        <App />
+        <App loadError={error}/>
       </Provider>,
       document.querySelector(`#root`)
   );
 };
 
 store.dispatch(DataOperation.loadFilms());
-store.dispatch(DataOperation.loadPromo()).then(init);
+store.dispatch(DataOperation.loadPromo())
+  .then(() => init(false))
+  .catch(() => init(true));
 store.dispatch(UserOperation.checkAuth());

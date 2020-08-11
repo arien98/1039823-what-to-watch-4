@@ -219,16 +219,6 @@ exports[`AddReview page should render correctly 1`] = `
         </div>
       </div>
     </form>
-    <p
-      style={
-        Object {
-          "color": "tomato",
-          "textAlign": "center",
-        }
-      }
-    >
-      Your review has not been sent. Please try again later.
-    </p>
   </div>
 </section>
 `;

@@ -59,7 +59,7 @@ const ErrorScreen = (props) => {
 };
 
 ErrorScreen.propTypes = {
-  errorType: PropTypes.string.isRequired,
+  errorType: PropTypes.number.isRequired,
   errorText: PropTypes.string,
 };
 
