@@ -39,7 +39,7 @@ const ActionCreator = {
   catchError: (error) => {
     return {
       type: ActionType.CATCH_ERROR,
-      payload: error.response.status,
+      payload: error,
     };
   },
 
@@ -71,7 +71,9 @@ const Operation = {
         dispatch(ActionCreator.loadFilms(adaptedData));
       })
       .catch((error) => {
-        dispatch(ActionCreator.catchError(error));
+        const recievedError = error.response ? error.response.status : 1;
+        console.log(recievedError);
+        dispatch(ActionCreator.catchError(recievedError));
       });
   },
 
@@ -82,7 +84,8 @@ const Operation = {
         dispatch(ActionCreator.loadPromo(adaptedData));
       })
       .catch((error) => {
-        dispatch(ActionCreator.catchError(error));
+        const recievedError = error.response ? error.response.status : 1;
+        dispatch(ActionCreator.catchError(recievedError));
       });
   },
 
@@ -95,7 +98,8 @@ const Operation = {
         }
       })
       .catch((error) => {
-        dispatch(ActionCreator.catchError(error));
+        const recievedError = error.response ? error.response.status : 1;
+        dispatch(ActionCreator.catchError(recievedError));
       });
   },
 
@@ -106,7 +110,8 @@ const Operation = {
       dispatch(Operation.loadPromo());
     })
       .catch((error) => {
-        dispatch(ActionCreator.catchError(error));
+        const recievedError = error.response ? error.response.status : 1;
+        dispatch(ActionCreator.catchError(recievedError));
       });
   },
 
@@ -116,7 +121,8 @@ const Operation = {
         dispatch(ActionCreator.loadReviews(response.data));
       })
       .catch((error) => {
-        dispatch(ActionCreator.catchError(error));
+        const recievedError = error.response ? error.response.status : 1;
+        dispatch(ActionCreator.catchError(recievedError));
       });
   },
 
@@ -134,7 +140,8 @@ const Operation = {
       dispatch(ScreenActionCreator.toggleFormState(false));
     })
     .catch((error) => {
-      dispatch(ActionCreator.catchError(error));
+      const recievedError = error.response ? error.response.status : 1;
+      dispatch(ActionCreator.catchError(recievedError));
 
       throw error;
     });

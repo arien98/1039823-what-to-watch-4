@@ -1,18 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../common.js";
+import {AppRoute, ErrorMessages} from "../../common.js";
 import {connect} from "react-redux";
 import {getErrorType} from "../../reducer/data/selectors.js";
-
-const ErrorMessages = {
-  400: `Вы ввели неверные данные`,
-  401: `Вы не авторизированы`,
-  403: `Доступ запрещен`,
-  404: `Страница не найдена`,
-  500: `Какие-то неполадки на сервере`,
-  503: `Сервер недоступен`,
-};
 
 const ErrorScreen = (props) => {
   const currentYear = new Date().getFullYear();

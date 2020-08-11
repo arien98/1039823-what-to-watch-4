@@ -5,7 +5,7 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/screen/screen.js";
-import {AppRoute, Error} from "../../common.js";
+import {AppRoute, Error, ErrorMessages} from "../../common.js";
 import {getFilms, getPromoFilm, getErrorType} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAuthorizationInfo} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
@@ -40,10 +40,11 @@ const App = (props) => {
     onPlayButtonClick,
     onExitButtonClick,
     onFavoriteButtonClick,
-    loadError
+    loadError,
+    errorType,
   } = props;
 
-  if (loadError) {
+  if (loadError || errorType === ErrorMessages[1]) {
     return <div>Ошибка загрузки сервера</div>;
   }
 
